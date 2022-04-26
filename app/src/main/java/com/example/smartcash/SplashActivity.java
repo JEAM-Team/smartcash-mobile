@@ -39,7 +39,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void gotoMainActivity() {
-        Intent intent = new  Intent(getApplicationContext(), HomeSecundariaActivity.class); //Aqui muda a tela pra principal
+        Intent intent = new  Intent(getApplicationContext(), MainActivity.class); //Aqui muda a tela pra principal
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
