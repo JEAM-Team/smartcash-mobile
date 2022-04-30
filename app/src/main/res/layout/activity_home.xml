@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomePadraoActivity">
+
+    <TextView
+        android:id="@+id/txtUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="10dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnSair"
+        android:layout_width="119dp"
+        android:layout_height="40dp"
+        android:backgroundTint="#FFFFFF"
+        android:text="Sair"
+        android:textColor="#000000"
+        app:icon="?attr/actionModeCloseDrawable"
+        app:iconTint="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="#FFFFFF"
+        style="?android:attr/borderlessButtonStyle" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="409dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSair" />
+
+    <TextView
+        android:id="@+id/txtCarteiraPessoal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="87dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="87dp"
+        android:text="Carteira Pessoal"
+        android:textColor="#8BC34A"
+        android:textSize="32dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+    <Button
+        android:id="@+id/btnHistoricoPessoal"
+        android:layout_width="194dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="50dp"
+        android:text="Historico"
+        app:layout_constraintEnd_toEndOf="@+id/boxPessoal"
+        app:layout_constraintStart_toStartOf="@+id/boxPessoal"
+        app:layout_constraintTop_toBottomOf="@+id/barrinhaEsquerda" />
+
+    <Button
+        android:id="@+id/btnPagamentosPessoal"
+        android:layout_width="140dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="57dp"
+        android:text="Pagamento"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/boxPessoal" />
+
+    <Button
+        android:id="@+id/btnSaldoPessoal"
+        android:layout_width="140dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="59dp"
+        android:layout_marginTop="15dp"
+        android:onClick="btnCarteiraProfissional"
+        android:text="Saldo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/boxPessoal" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="98dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:text="R$0"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/boxPessoal"
+        app:layout_constraintTop_toTopOf="@+id/boxPessoal" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="94dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:text="R$0"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/boxPessoal"
+        app:layout_constraintTop_toTopOf="@+id/boxPessoal" />
+
+    <TextView
+        android:id="@+id/boxPessoal"
+        android:layout_width="298dp"
+        android:layout_height="188dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="56dp"
+        android:background="@drawable/box"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtCarteiraPessoal" />
+
+    <TextView
+        android:id="@+id/barrinhaEsquerda"
+        android:layout_width="96dp"
+        android:layout_height="2dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/box"
+        app:layout_constraintStart_toStartOf="@+id/boxPessoal"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/barrinhaDireita"
+        android:layout_width="98dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/box"
+        app:layout_constraintEnd_toEndOf="@+id/boxPessoal"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/txtCarteiraProfissional"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="56dp"
+        android:text="Carteira Profissional"
+        android:textColor="#8BC34A"
+        android:textSize="32dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSaldoPessoal" />
+
+    <Button
+        android:id="@+id/btnPagamentosProfissional"
+        android:layout_width="140dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="57dp"
+        android:text="Pagamento"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/boxProfissional" />
+
+    <Button
+        android:id="@+id/btnSaldoProfissional"
+        android:layout_width="140dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="59dp"
+        android:layout_marginTop="15dp"
+        android:text="Saldo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/boxProfissional" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="94dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:text="R$0"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/boxProfissional"
+        app:layout_constraintTop_toTopOf="@+id/boxProfissional" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="98dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:text="R$0"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/boxProfissional"
+        app:layout_constraintTop_toTopOf="@+id/boxProfissional" />
+
+    <TextView
+        android:id="@+id/barrinhaEsquerda2"
+        android:layout_width="93dp"
+        android:layout_height="2dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/box"
+        app:layout_constraintStart_toStartOf="@+id/boxProfissional"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/barrinhaDireita2"
+        android:layout_width="98dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/box"
+        app:layout_constraintEnd_toEndOf="@+id/boxProfissional"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <TextView
+        android:id="@+id/boxProfissional"
+        android:layout_width="298dp"
+        android:layout_height="188dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="56dp"
+        android:background="@drawable/box"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtCarteiraProfissional" />
+
+    <Button
+        android:id="@+id/btnHistoricoProfissional"
+        android:layout_width="194dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="50dp"
+        android:text="Historico"
+        app:layout_constraintEnd_toEndOf="@+id/boxProfissional"
+        app:layout_constraintStart_toStartOf="@+id/boxProfissional"
+        app:layout_constraintTop_toBottomOf="@+id/barrinhaEsquerda2" />
+
+    <Button
+        android:id="@+id/btnAdicionarProduto"
+        android:layout_width="195dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="108dp"
+        android:text="Adicionar Produto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSaldoProfissional" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
