@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdicionarSaldoActivity">
+
+    <TextView
+        android:id="@+id/txtUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="10dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnSair"
+        android:layout_width="119dp"
+        android:layout_height="40dp"
+        android:backgroundTint="#FFFFFF"
+        android:text="Sair"
+        android:textColor="#000000"
+        app:icon="?attr/actionModeCloseDrawable"
+        app:iconTint="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="#FFFFFF"
+        style="?android:attr/borderlessButtonStyle" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="409dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSair" />
+
+    <TextView
+        android:id="@+id/txtCarteiraPessoal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="87dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="87dp"
+        android:text="Adicionar Saldo"
+        android:textColor="#8BC34A"
+        android:textSize="32dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+    <EditText
+        android:id="@+id/txtTituloSaldo"
+        android:layout_width="381dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="60dp"
+        android:ems="10"
+        android:hint="Titulo"
+        android:inputType="textPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/txtCarteiraPessoal"
+        tools:layout_editor_absoluteX="15dp" />
+
+    <EditText
+        android:id="@+id/txtValorSaldo"
+        android:layout_width="179dp"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:hint="Valor"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="282dp" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="378dp"
+        android:layout_height="48dp"
+        android:text="Repetir?"
+        tools:layout_editor_absoluteX="18dp"
+        tools:layout_editor_absoluteY="369dp" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="179dp"
+        android:layout_height="48dp"
+        tools:layout_editor_absoluteX="216dp"
+        tools:layout_editor_absoluteY="282dp" />
+
+    <EditText
+        android:id="@+id/editTextDate"
+        android:layout_width="112dp"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:hint="  /  /"
+        android:inputType="date"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="457dp" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName3"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:hint="0"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="185dp"
+        tools:layout_editor_absoluteY="462dp" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="370dp"
+        android:layout_height="48dp"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="558dp" />
+
+    <Button
+        android:id="@+id/btnAdicionarSaldo"
+        android:layout_width="365dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/radius_button"
+        android:text="Adicionar Saldo"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="645dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
