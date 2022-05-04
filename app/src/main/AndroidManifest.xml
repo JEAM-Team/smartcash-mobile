@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Smartcash">
         <activity
+            android:name=".AdicionarPagamento"
+            android:exported="false" />
+        <activity
             android:name=".AdicionarSaldoActivity"
             android:exported="false" />
         <activity

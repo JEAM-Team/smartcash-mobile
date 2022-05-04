@@ -44,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btnSair" />
 
     <TextView
-        android:id="@+id/txtCarteiraPessoal"
+        android:id="@+id/txtAdicionarPgamento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="87dp"
@@ -125,7 +125,7 @@
         android:background="@drawable/box"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtCarteiraPessoal" />
+        app:layout_constraintTop_toBottomOf="@+id/txtAdicionarPgamento" />
 
     <TextView
         android:id="@+id/barrinhaEsquerda"

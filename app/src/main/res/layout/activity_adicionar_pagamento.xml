@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdicionarSaldoActivity">
+    tools:context=".AdicionarPagamento">
 
     <TextView
         android:id="@+id/txtUsuario"
@@ -50,7 +50,7 @@
         android:layout_marginStart="87dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="87dp"
-        android:text="Adicionar Saldo"
+        android:text="Adicionar Pagamento"
         android:textColor="#8BC34A"
         android:textSize="32dp"
         android:textStyle="bold"
@@ -103,7 +103,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="65dp"
         android:layout_marginEnd="16dp"
-        android:contentDescription="Selecione uma Conta"
+        android:contentDescription="Selecione a Conta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtTituloPagamento" />
 
@@ -151,7 +151,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/radius_button"
-        android:text="Adicionar Saldo"
+        android:text="Adicionar Pagamento"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -197,6 +197,5 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         app:layout_constraintBottom_toTopOf="@+id/spinnerTag"
         app:layout_constraintStart_toStartOf="@+id/spinnerTag" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

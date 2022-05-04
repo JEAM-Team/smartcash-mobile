@@ -57,7 +57,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTxtLogin" />
 
     <Button
-        android:id="@+id/btnAdicionarSaldo"
+        android:id="@+id/btnAdicionarPagamento"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
@@ -97,7 +97,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAdicionarSaldo" />
+        app:layout_constraintTop_toBottomOf="@+id/btnAdicionarPagamento" />
 
     <ImageView
         android:id="@+id/imgDotted"
@@ -111,7 +111,7 @@
         app:layout_constraintEnd_toStartOf="@+id/btnRegister"
         app:layout_constraintHorizontal_bias="0.864"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAdicionarSaldo"
+        app:layout_constraintTop_toBottomOf="@+id/btnAdicionarPagamento"
         app:layout_constraintVertical_bias="0.359" />
 
     <ImageView
@@ -125,7 +125,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.138"
         app:layout_constraintStart_toEndOf="@+id/btnRegister"
-        app:layout_constraintTop_toBottomOf="@+id/btnAdicionarSaldo"
+        app:layout_constraintTop_toBottomOf="@+id/btnAdicionarPagamento"
         app:layout_constraintVertical_bias="0.369" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
