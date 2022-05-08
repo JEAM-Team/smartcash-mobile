@@ -19,8 +19,16 @@
             android:exported="false" />
 
         <activity
-            android:name=".CadastroActivity"
+            android:name=".SaldoActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".PagamentoActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".CadastroActivity"
+            android:exported="false"/>
 
         <activity
             android:name=".HomeSecundariaActivity"

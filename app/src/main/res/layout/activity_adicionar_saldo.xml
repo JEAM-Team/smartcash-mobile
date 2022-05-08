@@ -183,7 +183,7 @@
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Tag"
         app:layout_constraintBottom_toTopOf="@+id/spinnerTagSaldo"
         app:layout_constraintStart_toStartOf="@+id/spinnerTagSaldo" />
 
