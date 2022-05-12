@@ -12,12 +12,35 @@
         <activity
             android:name=".HistoricoActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".AdicionarSaldoActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".AdicionarPagamentoActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".SaldoActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".PagamentoActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".CadastroActivity"
+            android:exported="false"/>
+
         <activity
             android:name=".HomeSecundariaActivity"
             android:exported="false" />
+
         <activity
             android:name=".HomePadraoActivity"
             android:exported="false" />
+
         <activity
             android:name=".SplashActivity"
             android:exported="true">
