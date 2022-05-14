@@ -3,8 +3,11 @@ package com.example.smartcash;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,6 +63,7 @@ public class CadastroActivity extends AppCompatActivity {
         if(!name.isEmpty()
                 && !lastName.isEmpty()
                 && !email.isEmpty()
+                && Patterns.EMAIL_ADDRESS.matcher(email).matches()
                 && !cpf.isEmpty()
                 && senha.equals(confirmarSenha)){
             JSONObject jsonObject = new JSONObject();
@@ -115,6 +119,9 @@ public class CadastroActivity extends AppCompatActivity {
         }else if(senha.isEmpty() || confirmarSenha.isEmpty()){
             CadastroActivity.this.runOnUiThread(() -> Toast.makeText(CadastroActivity.this,
                     "Campo senha/confirmar senha são obrigatorios.", Toast.LENGTH_LONG).show());
+        }else{
+            CadastroActivity.this.runOnUiThread(() -> Toast.makeText(CadastroActivity.this,
+                    "Campo Email não foi preenchido corretamente.", Toast.LENGTH_LONG).show());
         }
     }
 
