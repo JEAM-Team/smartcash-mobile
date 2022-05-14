@@ -26,17 +26,22 @@
         android:id="@+id/editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="5dp"
+        android:drawableEnd="@drawable/ic_create"
         android:hint="Nome"
-        app:layout_constraintTop_toBottomOf="@+id/textView11"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <EditText
         android:id="@+id/editText3"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="80dp"
+        android:layout_marginEnd="95dp"
+        android:drawableEnd="@drawable/ic_attach_money"
         android:hint="Valor"
         app:layout_constraintEnd_toStartOf="@+id/editText2"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +52,8 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="5dp"
+        android:drawableEnd="@drawable/ic_code"
         android:hint="Codigo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText" />
