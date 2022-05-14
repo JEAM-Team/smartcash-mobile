@@ -6,13 +6,13 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/txtPagamento"
+        android:id="@+id/txtProduto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="90dp"
         android:layout_marginEnd="30dp"
-        android:text="Pagamentos"
+        android:text="Produto"
         android:textColor="#8BC34A"
         android:textSize="27dp"
         android:textStyle="bold"
@@ -43,6 +43,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="#FFFFFF" />
 
+
+
     <View
         android:id="@+id/view2"
         android:layout_width="380dp"
@@ -54,7 +56,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPagamento" />
+        app:layout_constraintTop_toBottomOf="@+id/txtProduto" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="0dp"
@@ -79,7 +81,7 @@
         app:layout_constraintBottom_toTopOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPagamento"
+        app:layout_constraintTop_toBottomOf="@+id/txtProduto"
         app:srcCompat="@android:drawable/ic_input_add" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
