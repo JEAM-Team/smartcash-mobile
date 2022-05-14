@@ -37,6 +37,7 @@
         android:layout_width="120dp"
         android:layout_height="50dp"
         android:backgroundTint="#F8F8F8"
+        android:onClick="btnVoltarClick"
         android:text="Sair"
         android:textColor="#000000"
         app:icon="?attr/actionModeCloseDrawable"
@@ -92,7 +93,7 @@
         android:drawableEnd="@drawable/ic_person_outline"
         android:ems="10"
         android:hint="CPF"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:minHeight="48dp"
         android:textColorHint="#888585"
         android:textSize="16sp"
@@ -119,7 +120,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTxtCPF" />
 
     <EditText
-        android:id="@+id/editTxtPassword_2"
+        android:id="@+id/editTxtPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -152,7 +153,7 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTxtPassword_2" />
+        app:layout_constraintTop_toBottomOf="@+id/editTxtPassword" />
 
     <Button
         android:id="@+id/bntCadastro"
@@ -162,6 +163,7 @@
         android:layout_marginTop="110dp"
         android:layout_marginEnd="60dp"
         android:background="@drawable/radius_button"
+        android:onClick="btnCadastrar"
         android:text="Cadastrar"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
