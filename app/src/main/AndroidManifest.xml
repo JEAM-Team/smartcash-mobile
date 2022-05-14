@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.smartcash">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/main_icon"
@@ -11,37 +13,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Smartcash">
         <activity
+            android:name=".ModalTagActivity"
+            android:exported="false" />
+        <activity
             android:name=".HistoricoActivity"
             android:exported="false" />
-
         <activity
             android:name=".AdicionarSaldoActivity"
             android:exported="false" />
-
         <activity
             android:name=".AdicionarPagamentoActivity"
             android:exported="false" />
-
         <activity
             android:name=".SaldoActivity"
             android:exported="false" />
-
         <activity
             android:name=".PagamentoActivity"
             android:exported="false" />
-
         <activity
             android:name=".CadastroActivity"
-            android:exported="false"/>
-
+            android:exported="false" />
         <activity
             android:name=".HomeSecundariaActivity"
             android:exported="false" />
-
         <activity
             android:name=".HomePadraoActivity"
             android:exported="false" />
-
         <activity
             android:name=".SplashActivity"
             android:exported="true">
