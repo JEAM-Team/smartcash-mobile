@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="#F8F8F8"
-        android:text="Adicionar Produto"
+        android:text="Adicionar Conta"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -39,23 +39,13 @@
         android:id="@+id/editTxtValor3"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="95dp"
+        android:layout_marginEnd="255dp"
         android:drawableEnd="@drawable/ic_attach_money"
         android:hint="Valor"
-        app:layout_constraintEnd_toStartOf="@+id/editText2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNome4" />
-
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="5dp"
-        android:drawableEnd="@drawable/ic_code"
-        android:hint="Codigo"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNome4" />
 
     <Button
@@ -63,12 +53,11 @@
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="40dp"
         android:layout_marginEnd="15dp"
         android:text="Adiciona conta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnCancelar3"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        tools:layout_editor_absoluteY="235dp" />
 
     <Button
         android:id="@+id/btnCancelar3"
