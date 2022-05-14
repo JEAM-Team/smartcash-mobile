@@ -25,13 +25,17 @@
         android:id="@+id/editTxtName3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="5dp"
+        android:drawableEnd="@drawable/ic_create"
         android:hint="Nome"
-        app:layout_constraintTop_toBottomOf="@+id/txtAdicionaTag"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtAdicionaTag" />
 
     <Button
-        android:id="@+id/btnAdicionarConta"
+        android:id="@+id/btnAdicionarConta2"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
@@ -39,11 +43,11 @@
         android:layout_marginEnd="15dp"
         android:text="Adiciona conta"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnCancelar"
+        app:layout_constraintStart_toEndOf="@+id/btnCancelar2"
         app:layout_constraintTop_toBottomOf="@+id/editTxtName3" />
 
     <Button
-        android:id="@+id/btnCancelar"
+        android:id="@+id/btnCancelar2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -54,7 +58,7 @@
         android:requiresFadingEdge="vertical"
         android:text="Cancelar"
         android:textColor="#000000"
-        app:layout_constraintEnd_toStartOf="@+id/btnAdicionarConta"
+        app:layout_constraintEnd_toStartOf="@+id/btnAdicionarConta2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTxtName3" />
 
