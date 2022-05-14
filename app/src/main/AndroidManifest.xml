@@ -9,35 +9,30 @@
         android:roundIcon="@mipmap/main_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.Smartcash">
-
+        <activity
+            android:name=".ModalProdutoActivity"
+            android:exported="false" />
         <activity
             android:name=".AdicionarSaldoActivity"
             android:exported="false" />
-
         <activity
             android:name=".AdicionarPagamentoActivity"
             android:exported="false" />
-
         <activity
             android:name=".SaldoActivity"
             android:exported="false" />
-
         <activity
             android:name=".PagamentoActivity"
             android:exported="false" />
-
         <activity
             android:name=".CadastroActivity"
-            android:exported="false"/>
-
+            android:exported="false" />
         <activity
             android:name=".HomeSecundariaActivity"
             android:exported="false" />
-
         <activity
             android:name=".HomePadraoActivity"
             android:exported="false" />
-
         <activity
             android:name=".SplashActivity"
             android:exported="true">
