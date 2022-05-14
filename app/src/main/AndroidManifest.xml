@@ -9,7 +9,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/main_icon"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Smartcash" >
+        android:theme="@style/Theme.Smartcash">
+        <activity
+            android:name=".ModalProdutoActivity"
+            android:exported="false"/>
         <activity
             android:name=".ProdutoActivity"
             android:exported="false" />
