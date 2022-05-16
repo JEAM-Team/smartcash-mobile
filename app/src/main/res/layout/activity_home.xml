@@ -84,7 +84,6 @@
         android:layout_height="59dp"
         android:layout_marginStart="59dp"
         android:layout_marginTop="15dp"
-        android:onClick="btnCarteiraProfissional"
         android:text="Saldo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/boxPessoal" />
