@@ -68,4 +68,11 @@ public class UsuarioDTO {
         this.email = email;
         this.senha = senha;
     }
+
+    public boolean autenticar(String email, String senha){
+        if(this.email.equals(email) && this.senha.equals(senha)){
+            return true;
+        }
+        return false;
+    }
 }
