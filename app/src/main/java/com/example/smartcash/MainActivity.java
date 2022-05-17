@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
                         edit = prefs.edit();
                         String token = response.body().toString();
                         edit.putString("token", token);
+                        edit.putString("email", email);
                         edit.commit();
 
                         AbrirHome();
