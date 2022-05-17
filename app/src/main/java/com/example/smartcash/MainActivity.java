@@ -2,14 +2,18 @@ package com.example.smartcash;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.smartcash.models.enums.AppConstants;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -17,6 +21,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import okhttp3.Authenticator;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
@@ -32,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
     Button btnRegister, btnSair, btnLogin;
     TextView editTxtLogin, editTxtPassword;
 
+    SharedPreferences prefs;
+    SharedPreferences.Editor edit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,29 +51,31 @@ public class MainActivity extends AppCompatActivity {
         editTxtPassword = findViewById(R.id.editTxtPassword);
     }
 
-    public void btnAbrirCadastrar(View view){
+    public void btnAbrirCadastrar(View view) {
         Intent intent = new Intent(this, CadastroActivity.class);
         startActivity(intent);
     }
 
-    public void AbrirHome(){
-        Intent intent = new Intent(this, HomePadraoActivity.class);
+    public void AbrirHome() {
+        Intent intent = new Intent(this, HomeSecundariaActivity.class);
         startActivity(intent);
     }
 
-    public void btnVoltarClick(View view){ finish();}
+    public void btnVoltarClick(View view) {
+        finish();
+    }
 
-    public void btnLogin(View view){
+    public void btnLogin(View view) {
         loginUsuario();
     }
 
-    public void loginUsuario(){
+    public void loginUsuario() {
         String email = editTxtLogin.getText().toString();
         String senha = editTxtPassword.getText().toString();
 
-        if(!email.isEmpty()
-            && !senha.isEmpty()
-            && Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+        if (!email.isEmpty()
+                && !senha.isEmpty()
+                && Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
 
             JSONObject jsonObject = new JSONObject();
             try {
@@ -74,14 +84,12 @@ public class MainActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
             RequestBody body = RequestBody.create(String.valueOf(jsonObject), mediaType);
 
             Request request = new Request.Builder()
-                    .url("https://smartcash-engine.herokuapp.com/engine/v1/login")
+                    .url(AppConstants.BASE_URL.getName().concat("/login"))
                     .post(body)
                     .addHeader("Content-Type", "application/json")
-                    .addHeader("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJKb2FvQGdtYWlsLmNvbSIsImV4cCI6MTY1MjU3MTAwNH0.qblz3ttQIh3qiJSSE61fqupUwD9elejcdgfMWWlBfyvIbzIu0-Gxts4B4dCFuKLPG6xCUIfahRDaSp79ooobzQ")
                     .build();
 
             client.newCall(request).enqueue(new Callback() {
@@ -96,18 +104,23 @@ public class MainActivity extends AppCompatActivity {
                     if (response.isSuccessful()) {
                         MainActivity.this.runOnUiThread(() -> Toast.makeText(MainActivity.this,
                                 "Seja bem vindo!", Toast.LENGTH_LONG).show());
+
+                        prefs = MainActivity.this.getSharedPreferences("sm-pref", Context.MODE_PRIVATE);
+                        edit = prefs.edit();
+                        String token = response.body().toString();
+                        edit.putString("token", token);
+                        edit.commit();
+
                         AbrirHome();
                     } else if (response.code() == 403) {
+                        MainActivity.this.runOnUiThread(() -> Toast.makeText(MainActivity.this,
+                                "Usuario não encontrado, por favor cadastre-se.", Toast.LENGTH_LONG).show());
+                    } else if (response.code() == 401) {
                         MainActivity.this.runOnUiThread(() -> Toast.makeText(MainActivity.this,
                                 "Token expirado. Por favor tente novamente.", Toast.LENGTH_LONG).show());
                     }
                 }
             });
         }
-//        else if(!senha.equals(confirmarSenha)){
-//            CadastroActivity.this.runOnUiThread(() -> Toast.makeText(CadastroActivity.this,
-//                    "Senhas Incompativeis.", Toast.LENGTH_LONG).show());
-//        }
-
-    } //Fim do metodo
+    }
 }
