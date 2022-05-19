@@ -1,5 +1,7 @@
 package com.example.smartcash.models.dtos;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDate;
 
 public class NotaDto {
@@ -8,6 +10,7 @@ public class NotaDto {
 
     private Double valor;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate data;
 
     public String getTitulo() {

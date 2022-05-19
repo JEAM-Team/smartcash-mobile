@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void AbrirHome() {
-        Intent intent = new Intent(this, HomeSecundariaActivity.class);
+        Intent intent = new Intent(this, PagamentoActivity.class);
         startActivity(intent);
     }
 
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
                         prefs = MainActivity.this.getSharedPreferences("sm-pref", Context.MODE_PRIVATE);
                         edit = prefs.edit();
-                        String token = response.body().toString();
+                        String token = response.body().string();
                         edit.putString("token", token);
                         edit.putString("email", email);
                         edit.commit();
