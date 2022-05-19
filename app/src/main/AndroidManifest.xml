@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/main_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.Smartcash">
+        
         <activity
             android:name=".ModalContaActivity"
             android:exported="false" />
