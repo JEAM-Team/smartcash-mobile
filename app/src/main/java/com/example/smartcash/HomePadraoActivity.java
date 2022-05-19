@@ -11,7 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.smartcash.models.views.TotalView;
+import com.example.smartcash.models.dtos.CalculaResultadoDto;
+
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -50,13 +51,13 @@ public class HomePadraoActivity extends AppCompatActivity {
     public void chamada() {
         prefs = HomePadraoActivity.this.getSharedPreferences("sm-pref", Context.MODE_PRIVATE);
 //        String token = prefs.getString("token","");
-        String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJKb2FvQGdtYWlsLmNvbSIsImV4cCI6MTY1MjgzMzQzMn0.Z351QP5jhHwTK2YPTik8xy2watQSOJC5B2ziTDJiR8Po-UeRoLya5Nl3KaaR3d3dUpcxcEKRMVPH_OdukiPGew";
-        String email = prefs.getString("email","");
+        String token = "";
 
         Request request = new Request.Builder()
-                .url("https://smartcash-engine.herokuapp.com/engine/v1/nota/total")
+                .url("https://smartcash-engine.herokuapp.com/engine/v1/nota/total?saldo_pessoal=true&saldo_comercial=true&pagamento_pessoal=true&pagamento_comercial=true")
                 .get()
                 .addHeader("Content-Type", "application/json")
+                .addHeader("email", "")
                 .addHeader("Authorization", "Bearer " + token)
                 .build();
 
@@ -68,12 +69,11 @@ public class HomePadraoActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) {
                 try {
-                    TotalView totalView = new Gson().fromJson(response.body().string(), TotalView.class);
-                    txtSaldoPessoal.setText("R$" + totalView.getTotalRecebimento().toString());
-                    txtPagamentoPessoal.setText("R$"+totalView.getTotalPagamento().toString());
-                    txtSaldoProfissional.setText("R$"+totalView);
-                    txtPagamentoProfissional.setText("R$"+totalView);
-                    txtUsuario.setText(email);
+                    CalculaResultadoDto total = new Gson().fromJson(response.body().string(), CalculaResultadoDto.class);
+                    txtSaldoPessoal.setText("R$" + total.getTotalPessoal().getTotalSaldo().toString());
+                    txtPagamentoPessoal.setText("R$"+total.getTotalPessoal().getTotalPagamento().toString());
+                    txtSaldoProfissional.setText("R$"+total.getTotalComercial().getTotalSaldo().toString());
+                    txtPagamentoProfissional.setText("R$"+total.getTotalComercial().getTotalPagamento().toString());
                 }catch (RuntimeException | IOException e){
                     e.printStackTrace();
                 }
