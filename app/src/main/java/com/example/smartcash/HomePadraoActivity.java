@@ -50,8 +50,7 @@ public class HomePadraoActivity extends AppCompatActivity {
 
     public void chamada() {
         prefs = HomePadraoActivity.this.getSharedPreferences("sm-pref", Context.MODE_PRIVATE);
-//        String token = prefs.getString("token","");
-        String token = "";
+        String token = prefs.getString("token","");
 
         Request request = new Request.Builder()
                 .url("https://smartcash-engine.herokuapp.com/engine/v1/nota/total?saldo_pessoal=true&saldo_comercial=true&pagamento_pessoal=true&pagamento_comercial=true")
