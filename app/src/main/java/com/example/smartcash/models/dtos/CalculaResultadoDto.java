@@ -2,38 +2,38 @@ package com.example.smartcash.models.dtos;
 
 public class CalculaResultadoDto {
 
-    private Double totalPagamento;
-    private Double totalRecebimento;
-
-    public CalculaResultadoDto(Double totalPagamento, Double totalRecebimento) {
-        this.totalPagamento = totalPagamento;
-        this.totalRecebimento = totalRecebimento;
-    }
+    private NotaTotalDto totalPessoal;
+    private NotaTotalDto totalComercial;
 
     public CalculaResultadoDto() {
     }
 
-    public Double getTotalPagamento() {
-        return totalPagamento;
+    public CalculaResultadoDto(NotaTotalDto totalPessoal, NotaTotalDto totalComercial) {
+        this.totalPessoal = totalPessoal;
+        this.totalComercial = totalComercial;
     }
 
-    public void setTotalPagamento(Double totalPagamento) {
-        this.totalPagamento = totalPagamento;
+    public NotaTotalDto getTotalPessoal() {
+        return totalPessoal;
     }
 
-    public Double getTotalRecebimento() {
-        return totalRecebimento;
+    public void setTotalPessoal(NotaTotalDto totalPessoal) {
+        this.totalPessoal = totalPessoal;
     }
 
-    public void setTotalRecebimento(Double totalRecebimento) {
-        this.totalRecebimento = totalRecebimento;
+    public NotaTotalDto getTotalComercial() {
+        return totalComercial;
+    }
+
+    public void setTotalComercial(NotaTotalDto totalComercial) {
+        this.totalComercial = totalComercial;
     }
 
     @Override
     public String toString() {
         return "CalculaResultadoDto{" +
-                "totalPagamento=" + totalPagamento +
-                ", totalRecebimento=" + totalRecebimento +
+                "totalPessoal=" + totalPessoal +
+                ", totalComercial=" + totalComercial +
                 '}';
     }
 }

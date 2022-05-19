@@ -63,6 +63,7 @@
         android:layout_width="194dp"
         android:layout_height="56dp"
         android:layout_marginTop="50dp"
+        android:onClick="btnAbrirHistorico"
         android:text="Historico"
         app:layout_constraintEnd_toEndOf="@+id/boxPessoal"
         app:layout_constraintStart_toStartOf="@+id/boxPessoal"
@@ -74,6 +75,7 @@
         android:layout_height="59dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="57dp"
+        android:onClick="btnAbrirPagamento"
         android:text="Pagamento"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/boxPessoal" />
@@ -84,13 +86,13 @@
         android:layout_height="59dp"
         android:layout_marginStart="59dp"
         android:layout_marginTop="15dp"
-        android:onClick="btnCarteiraProfissional"
+        android:onClick="btnAbrirSaldo"
         android:text="Saldo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/boxPessoal" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/txtPagamentoPessoal"
         android:layout_width="98dp"
         android:layout_height="30dp"
         android:layout_marginTop="30dp"
@@ -103,7 +105,7 @@
         app:layout_constraintTop_toTopOf="@+id/boxPessoal" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/txtSaldoPessoal"
         android:layout_width="94dp"
         android:layout_height="31dp"
         android:layout_marginStart="20dp"
@@ -135,7 +137,7 @@
         android:layout_marginTop="1dp"
         android:background="@drawable/box"
         app:layout_constraintStart_toStartOf="@+id/boxPessoal"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/txtSaldoPessoal" />
 
     <TextView
         android:id="@+id/barrinhaDireita"
@@ -145,7 +147,7 @@
         android:layout_marginEnd="20dp"
         android:background="@drawable/box"
         app:layout_constraintEnd_toEndOf="@+id/boxPessoal"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/txtPagamentoPessoal" />
 
     <TextView
         android:id="@+id/txtCarteiraProfissional"
@@ -183,7 +185,7 @@
         app:layout_constraintTop_toBottomOf="@+id/boxProfissional" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/txtSaldoProfissional"
         android:layout_width="94dp"
         android:layout_height="31dp"
         android:layout_marginStart="20dp"
@@ -196,7 +198,7 @@
         app:layout_constraintTop_toTopOf="@+id/boxProfissional" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/txtPagamentoProfissional"
         android:layout_width="98dp"
         android:layout_height="30dp"
         android:layout_marginTop="30dp"
@@ -216,7 +218,7 @@
         android:layout_marginTop="1dp"
         android:background="@drawable/box"
         app:layout_constraintStart_toStartOf="@+id/boxProfissional"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/txtSaldoProfissional" />
 
     <TextView
         android:id="@+id/barrinhaDireita2"
@@ -226,7 +228,7 @@
         android:layout_marginEnd="20dp"
         android:background="@drawable/box"
         app:layout_constraintEnd_toEndOf="@+id/boxProfissional"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toBottomOf="@+id/txtPagamentoProfissional" />
 
     <TextView
         android:id="@+id/boxProfissional"
