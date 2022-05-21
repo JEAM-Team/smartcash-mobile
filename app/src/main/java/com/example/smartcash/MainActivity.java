@@ -13,7 +13,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.smartcash.models.domain.Carteira;
+import com.example.smartcash.models.domain.Nota;
+import com.example.smartcash.models.domain.Usuario;
 import com.example.smartcash.models.enums.AppConstants;
+import com.example.smartcash.models.enums.TipoCarteira;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -111,6 +116,29 @@ public class MainActivity extends AppCompatActivity {
                         edit.putString("token", token);
                         edit.putString("email", email);
                         edit.commit();
+
+                        Request request = new Request.Builder()
+                                .url(AppConstants.BASE_URL.getName().concat("/usuario?email="+email))
+                                .get()
+                                .addHeader("Content-Type", "application/json")
+                                .build();
+
+                        Response responseUser = client.newCall(request).execute();
+
+                        Usuario usuario = new ObjectMapper().readValue(responseUser.body().string(), Usuario.class);
+
+                        for(Carteira carteira : usuario.getCarteiras()){
+                            switch(carteira.getTipo()){
+                                case PESSOAL:
+                                    edit.putLong("idCarteiraPessoal", carteira.getId());
+                                    edit.commit();
+                                    break;
+                                case COMERCIAL:
+                                    edit.putLong("idCarteiraProfissional", carteira.getId());
+                                    edit.commit();
+                                    break;
+                            }
+                        }
 
                         AbrirHome();
                     } else if (response.code() == 403) {
