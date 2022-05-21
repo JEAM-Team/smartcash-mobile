@@ -1,5 +1,7 @@
 package com.example.smartcash.models.enums;
 
+import android.content.res.Resources;
+
 public enum TipoConta {
 
 	CC("Conta Corrente"),
@@ -19,8 +21,15 @@ public enum TipoConta {
 
 	@Override
 	public String toString() {
-		return "TipoConta{" +
-				"nome='" + nome + '\'' +
-				'}';
+		return nome;
+	}
+
+	public static TipoConta tipoContaComValor(String nome){
+		for (TipoConta tipo: TipoConta.values()){
+			if (tipo.getNome().equals(nome)){
+				return tipo;
+			}
+		}
+		throw new Resources.NotFoundException("Não pode ser encontrado nem uma conta com o valor: " + nome);
 	}
 }

@@ -6,32 +6,28 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.example.smartcash.models.enums.TipoNota;
 import com.example.smartcash.models.domain.Produto;
 import com.example.smartcash.models.domain.Tag;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 import java.time.LocalDate;
 
 public class Nota {
 
 	private Long id;
-
 	private String titulo;
-
 	private Double valor;
-
 	private Boolean repeticao;
-
+	@JsonSerialize(using = LocalDateSerializer.class)
+	@JsonDeserialize(using = LocalDateDeserializer.class)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private LocalDate data;
-
 	private Integer qtdVezes;
-
 	private TipoNota tipo;
-
 	private Tag tag;
-
 	private Produto produto;
-
 	private Conta conta;
-
 	private Carteira carteira;
 
 	public Nota() {
