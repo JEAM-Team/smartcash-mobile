@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void AbrirHome() {
-        Intent intent = new Intent(this, HomeSecundariaActivity.class);
+        Intent intent = new Intent(this, SaldoActivity.class);
         startActivity(intent);
     }
 
@@ -121,6 +121,8 @@ public class MainActivity extends AppCompatActivity {
                                 .url(AppConstants.BASE_URL.getName().concat("/usuario?email="+email))
                                 .get()
                                 .addHeader("Content-Type", "application/json")
+                                .addHeader("email", email)
+                                .addHeader("Authorization", "Bearer " + token)
                                 .build();
 
                         Response responseUser = client.newCall(request).execute();

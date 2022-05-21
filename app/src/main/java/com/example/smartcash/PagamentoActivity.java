@@ -24,6 +24,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -109,7 +110,7 @@ public class PagamentoActivity extends AppCompatActivity {
     }
 
     public List<NotaDto> converterParaNotaDto(String json) throws JsonProcessingException {
-        Nota[] notas = new ObjectMapper().readValue(json, Nota[].class);
+            Nota[] notas = new ObjectMapper().readValue(json, Nota[].class);
 
         List<NotaDto> notasDto = new ArrayList<>();
 
