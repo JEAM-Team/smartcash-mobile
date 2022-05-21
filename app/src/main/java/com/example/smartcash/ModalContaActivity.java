@@ -33,7 +33,7 @@ public class ModalContaActivity extends AppCompatActivity {
     private final OkHttpClient client = new OkHttpClient();
     private final MediaType mediaType = MediaType.parse("application/json");
     TextView txtNome4, editTxtValor3;
-    Button btnAdionarConta,btnCancelar;
+    Button btnAdionarConta, btnCancelar;
     Spinner dropTipoConta;
 
     SharedPreferences prefs;
@@ -67,7 +67,7 @@ public class ModalContaActivity extends AppCompatActivity {
                 .get()
                 .addHeader("Content-Type", "application/json")
                 .addHeader("email", email)
-                .addHeader("Authorization", "Bearer "+token)
+                .addHeader("Authorization", "Bearer " + token)
                 .build();
 
         client.newCall(requestById).enqueue(new Callback() {
@@ -103,8 +103,6 @@ public class ModalContaActivity extends AppCompatActivity {
                         .addHeader("Authorization", "Bearer " + token)
                         .build();
 
-                System.out.println("AQUIIIIII - >"+tipoConta);
-
                 client.newCall(request).enqueue(new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
@@ -112,7 +110,6 @@ public class ModalContaActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
-                        System.out.println("AQUIIIIII - >"+response.body().string());
                         if (response.isSuccessful()) {
                             ModalContaActivity.this.runOnUiThread(() -> Toast.makeText(ModalContaActivity.this,
                                     "Conta enviada com Sucesso!", Toast.LENGTH_LONG).show());

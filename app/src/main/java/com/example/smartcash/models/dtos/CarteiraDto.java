@@ -1,7 +1,5 @@
 package com.example.smartcash.models.dtos;
 
-import com.example.smartcash.models.enums.TipoCarteira;
-
 public class CarteiraDto {
 
     private Long id;
@@ -28,3 +26,4 @@ public class CarteiraDto {
                 '}';
     }
 }
+
