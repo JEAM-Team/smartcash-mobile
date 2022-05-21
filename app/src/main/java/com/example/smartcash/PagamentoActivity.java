@@ -17,6 +17,8 @@ import android.widget.TextView;
 import com.example.smartcash.models.adapters.PagamentoAdapter;
 import com.example.smartcash.models.domain.Nota;
 import com.example.smartcash.models.dtos.NotaDto;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -38,7 +40,9 @@ public class PagamentoActivity extends AppCompatActivity {
     private final OkHttpClient client = new OkHttpClient();
     private final MediaType mediaType = MediaType.parse("application/json");
     private FloatingActionButton floatingActionButton;
+
     SharedPreferences prefs;
+    SharedPreferences.Editor edit;
 
     private RecyclerView listaPagamentos;
     private PagamentoAdapter pagamentoAdapter;
@@ -49,18 +53,25 @@ public class PagamentoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pagamento);
         listaPagamentos = (RecyclerView) findViewById(R.id.listaPagamentos);
         floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
-        setRecycler();
+
+        try {
+            setRecycler();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void setRecycler(){
+    public void setRecycler() throws JsonProcessingException {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        BuscarPagamentos();
 
-        listaPagamentos.setLayoutManager(layoutManager);
+        String json = prefs.getString("listaPagamento","");
 
-        pagamentoAdapter = new PagamentoAdapter(BuscarPagamentos());
-        listaPagamentos.setAdapter(pagamentoAdapter);
+        pagamentoAdapter = new PagamentoAdapter(converterParaNotaDto(json));
         listaPagamentos.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-    }
+        listaPagamentos.setLayoutManager(layoutManager);
+        listaPagamentos.setAdapter(pagamentoAdapter);
+    } //aq se pausar funciona pq??
 
     public <T> List<T> getList(String jsonArray, Class<T> clazz) {
         Type typeOfT = TypeToken.getParameterized(List.class, clazz).getType();
@@ -68,8 +79,10 @@ public class PagamentoActivity extends AppCompatActivity {
     }
 
 
-    public ArrayList<NotaDto> BuscarPagamentos(){
+    public void BuscarPagamentos(){
         prefs = PagamentoActivity.this.getSharedPreferences("sm-pref", Context.MODE_PRIVATE);
+        edit = prefs.edit();
+
         String token = prefs.getString("token","");
         String email = prefs.getString("email","");
 
@@ -82,38 +95,35 @@ public class PagamentoActivity extends AppCompatActivity {
                 .addHeader("Authorization", "Bearer " + token)
                 .build();
 
-        ArrayList<NotaDto> listaNotasDto = new ArrayList<>();
-
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
             }
 
             @Override
-            public void onResponse(Call call, Response response) {
-                try {
-                    Nota[] notas = new Gson().fromJson(response.body().string(), Nota[].class);
-
-                    List<NotaDto> notasDto = new ArrayList<>();
-
-                    for (Nota nota : notas) {
-                        NotaDto notaDto = new NotaDto();
-
-                        notaDto.setTitulo(nota.getTitulo());
-                        notaDto.setValor(nota.getValor());
-                        notaDto.setData(nota.getData());
-
-                        notasDto.add(notaDto);
-                    }
-
-                    listaNotasDto.addAll(notasDto);
-                }catch (RuntimeException | IOException e){
-                    e.printStackTrace();
-                }
+            public void onResponse(Call call, Response response) throws IOException {
+                edit.putString("listaPagamento", response.body().string());
+                edit.commit();
             }
         });
+    }
 
-        return listaNotasDto;
+    public List<NotaDto> converterParaNotaDto(String json) throws JsonProcessingException {
+        Nota[] notas = new ObjectMapper().readValue(json, Nota[].class);
+
+        List<NotaDto> notasDto = new ArrayList<>();
+
+        for (Nota nota : notas) {
+            NotaDto notaDto = new NotaDto();
+
+            notaDto.setTitulo(nota.getTitulo());
+            notaDto.setValor(nota.getValor());
+            notaDto.setData(nota.getData());
+
+            notasDto.add(notaDto);
+        }
+
+        return notasDto;
     }
 
     public void btnAdicionarPagamento(View view){

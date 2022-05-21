@@ -12,11 +12,12 @@ import com.example.smartcash.models.dtos.NotaDto;
 import com.example.smartcash.models.holders.CardPagamentoHolder;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PagamentoAdapter extends RecyclerView.Adapter<CardPagamentoHolder> {
-    private ArrayList<NotaDto> notas;
+    private List<NotaDto> notas;
 
-    public PagamentoAdapter(ArrayList<NotaDto> notas) {this.notas = notas;}
+    public PagamentoAdapter(List<NotaDto> notas) {this.notas = notas;}
 
     @NonNull
     @Override
