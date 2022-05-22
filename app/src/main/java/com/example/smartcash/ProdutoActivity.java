@@ -13,6 +13,7 @@ import com.example.smartcash.models.adapters.ProdutoAdapter;
 import com.example.smartcash.models.adapters.SaldoAdapter;
 import com.example.smartcash.models.domain.Produto;
 import com.example.smartcash.models.dtos.ProdutoDto;
+import com.example.smartcash.models.enums.TipoCarteira;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -85,10 +86,11 @@ public class ProdutoActivity extends AppCompatActivity {
 
         String token = prefs.getString("token","");
         String email = prefs.getString("email","");
+        Long idCarteira = prefs.getLong("idCarteiraProfissional",0L);
 
 
         Request request = new Request.Builder()
-                .url("https://smartcash-engine.herokuapp.com/engine/v1/produto/") //qq eu coloco aq JESUS?
+                .url("https://smartcash-engine.herokuapp.com/engine/v1/produto/carteira/"+idCarteira)
                 .get()
                 .addHeader("Content-Type", "application/json")
                 .addHeader("email", email)
