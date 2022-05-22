@@ -84,7 +84,7 @@ public class AdicionarSaldoActivity extends AppCompatActivity {
         prefs = AdicionarSaldoActivity.this.getSharedPreferences("sm-pref", Context.MODE_PRIVATE);
 
         Request request = new Request.Builder()
-                .url(AppConstants.BASE_URL.getName().concat("/carteira/busca?tipo="+tipoCarteira))
+                .url(AppConstants.BASE_URL.getName().concat("/carteira/busca?tipo="+tipoCarteira.name()))
                 .get()
                 .addHeader("email", prefs.getString("email", ""))
                 .addHeader("Authorization", "Bearer " + prefs.getString("token", ""))
