@@ -44,7 +44,7 @@ public class ModalContaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_modal_conta);
         btnAdionarConta = findViewById(R.id.btnAdicionarConta3);
         btnCancelar = findViewById(R.id.btnCancelar3);
-        txtNome4 = findViewById(R.id.txtNome4);
+        txtNome4 = findViewById(R.id.txtNome3);
         editTxtValor3 = findViewById(R.id.editTxtValor3);
         dropTipoConta = findViewById(R.id.dropTipoConta);
 
@@ -73,6 +73,7 @@ public class ModalContaActivity extends AppCompatActivity {
         client.newCall(requestById).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
+
             }
 
             @Override
