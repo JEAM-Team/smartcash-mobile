@@ -16,28 +16,18 @@ import java.time.LocalDate;
 public class Nota {
 
 	private Long id;
-
 	private String titulo;
-
 	private Double valor;
-
 	private Boolean repeticao;
-
 	@JsonSerialize(using = LocalDateSerializer.class)
 	@JsonDeserialize(using = LocalDateDeserializer.class)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private LocalDate data;
-
 	private Integer qtdVezes;
-
 	private TipoNota tipo;
-
 	private Tag tag;
-
 	private Produto produto;
-
 	private Conta conta;
-
 	private Carteira carteira;
 
 	public Nota() {

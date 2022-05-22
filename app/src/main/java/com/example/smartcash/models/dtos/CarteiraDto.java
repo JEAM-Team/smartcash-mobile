@@ -2,15 +2,15 @@ package com.example.smartcash.models.dtos;
 
 public class CarteiraDto {
 
+    private Long id;
+
     public CarteiraDto() {
     }
 
     public CarteiraDto(Long id) {
         this.id = id;
     }
-
-    private Long id;
-
+  
     public Long getId() {
         return id;
     }
