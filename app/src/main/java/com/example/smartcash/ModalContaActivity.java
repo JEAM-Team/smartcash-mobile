@@ -53,6 +53,10 @@ public class ModalContaActivity extends AppCompatActivity {
         dropTipoConta.setAdapter(conta);
     }
 
+    public void btnSair(View view){
+        finish();
+    }
+
     public void btnEnvioconta(View view) {
         enviarConta();
     }
