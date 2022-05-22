@@ -1,28 +1,27 @@
 package com.example.smartcash.models.domain;
 
-import com.example.smartcash.models.domain.Carteira;
 import com.example.smartcash.models.enums.TipoConta;
+
+import java.util.List;
 
 public class Conta {
 
 	private Long id;
-
 	private String nome;
-
 	private Double valorTotal;
-
-	private TipoConta tipoConta;
-
+	private List<Nota> notas;
+	private TipoConta tipo_conta;
 	private Carteira carteira;
 
 	public Conta() {
 	}
 
-	public Conta(Long id, String nome, Double valorTotal, TipoConta tipoConta, Carteira carteira) {
+	public Conta(Long id, String nome, Double valorTotal, List<Nota> notas, TipoConta tipo_conta, Carteira carteira) {
 		this.id = id;
 		this.nome = nome;
 		this.valorTotal = valorTotal;
-		this.tipoConta = tipoConta;
+		this.notas = notas;
+		this.tipo_conta = tipo_conta;
 		this.carteira = carteira;
 	}
 
@@ -50,12 +49,20 @@ public class Conta {
 		this.valorTotal = valorTotal;
 	}
 
-	public TipoConta getTipoConta() {
-		return tipoConta;
+	public List<Nota> getNotas() {
+		return notas;
 	}
 
-	public void setTipoConta(TipoConta tipoConta) {
-		this.tipoConta = tipoConta;
+	public void setNotas(List<Nota> notas) {
+		this.notas = notas;
+	}
+
+	public TipoConta getTipo_conta() {
+		return tipo_conta;
+	}
+
+	public void setTipo_conta(TipoConta tipo_conta) {
+		this.tipo_conta = tipo_conta;
 	}
 
 	public Carteira getCarteira() {
@@ -72,7 +79,8 @@ public class Conta {
 				"id=" + id +
 				", nome='" + nome + '\'' +
 				", valorTotal=" + valorTotal +
-				", tipoConta=" + tipoConta +
+				", notas=" + notas +
+				", tipo_conta=" + tipo_conta +
 				", carteira=" + carteira +
 				'}';
 	}

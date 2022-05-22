@@ -6,9 +6,15 @@ public class Tag {
 
 	private String titulo;
 
-	public Tag(Long id, String titulo) {
+	private Carteira carteira;
+
+	public Tag() {
+	}
+
+	public Tag(Long id, String titulo, Carteira carteira) {
 		this.id = id;
 		this.titulo = titulo;
+		this.carteira = carteira;
 	}
 
 	public Long getId() {
@@ -27,11 +33,20 @@ public class Tag {
 		this.titulo = titulo;
 	}
 
+	public Carteira getCarteira() {
+		return carteira;
+	}
+
+	public void setCarteira(Carteira carteira) {
+		this.carteira = carteira;
+	}
+
 	@Override
 	public String toString() {
 		return "Tag{" +
 				"id=" + id +
 				", titulo='" + titulo + '\'' +
+				", carteira=" + carteira +
 				'}';
 	}
 }
