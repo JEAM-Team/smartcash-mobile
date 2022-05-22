@@ -9,7 +9,7 @@
     tools:context=".ModalProdutoActivity">
 
     <TextView
-        android:id="@+id/txtConta"
+        android:id="@+id/txtProduto"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="#F8F8F8"
@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/txtNome4"
+        android:id="@+id/txtNome3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
@@ -33,7 +33,7 @@
         android:hint="Nome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtConta" />
+        app:layout_constraintTop_toBottomOf="@+id/txtProduto" />
 
     <EditText
         android:id="@+id/editTxtValor3"
@@ -43,12 +43,12 @@
         android:layout_marginEnd="95dp"
         android:drawableEnd="@drawable/ic_attach_money"
         android:hint="Valor"
-        app:layout_constraintEnd_toStartOf="@+id/editText2"
+        app:layout_constraintEnd_toStartOf="@+id/editTxtCodigo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNome4" />
+        app:layout_constraintTop_toBottomOf="@+id/txtNome3" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/editTxtCodigo"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -56,7 +56,7 @@
         android:drawableEnd="@drawable/ic_code"
         android:hint="Codigo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNome4" />
+        app:layout_constraintTop_toBottomOf="@+id/txtNome3" />
 
     <Button
         android:id="@+id/btnAdicionarConta3"
@@ -65,10 +65,11 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="15dp"
+        android:onClick="btnEnvioProduto"
         android:text="Adiciona conta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnCancelar3"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintTop_toBottomOf="@+id/editTxtDescricao" />
 
     <Button
         android:id="@+id/btnCancelar3"
@@ -79,11 +80,23 @@
         android:layout_marginEnd="5dp"
         android:backgroundTint="@color/white"
         android:fadingEdge="horizontal"
+        android:onClick="btnSair"
         android:requiresFadingEdge="vertical"
         android:text="Cancelar"
         android:textColor="#000000"
         app:layout_constraintEnd_toStartOf="@+id/btnAdicionarConta3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTxtValor3" />
+        app:layout_constraintTop_toBottomOf="@+id/editTxtDescricao" />
+
+    <EditText
+        android:id="@+id/editTxtDescricao"
+        android:layout_width="400dp"
+        android:layout_height="100dp"
+        android:ems="10"
+        android:hint="Descrição do produto"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="221dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
