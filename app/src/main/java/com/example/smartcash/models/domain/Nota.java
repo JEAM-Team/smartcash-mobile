@@ -2,8 +2,6 @@ package com.example.smartcash.models.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.example.smartcash.models.enums.TipoNota;
-import com.example.smartcash.models.domain.Produto;
-import com.example.smartcash.models.domain.Tag;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
