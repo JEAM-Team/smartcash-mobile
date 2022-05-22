@@ -57,6 +57,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtSaldo" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listaSaldo"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/view2"
@@ -76,6 +77,8 @@
         android:layout_marginBottom="20dp"
         android:backgroundTint="#FFC107"
         android:clickable="true"
+        android:contentDescription="Adicionar Saldo"
+        android:onClick="btnAbrirAdicionarSaldo"
         app:layout_constraintBottom_toTopOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
