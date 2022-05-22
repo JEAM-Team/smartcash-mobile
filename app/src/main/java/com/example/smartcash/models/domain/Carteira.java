@@ -6,6 +6,11 @@ import java.util.List;
 
 public class Carteira {
 
+	private Long id;
+	private TipoCarteira tipo;
+	private List<Conta> contas;
+	private List<Tag> tags;
+
 	public Carteira() {
 	}
 
@@ -15,11 +20,6 @@ public class Carteira {
 		this.contas = contas;
 		this.tags = tags;
 	}
-
-	private Long id;
-	private TipoCarteira tipo;
-	private List<Conta> contas;
-	private List<Tag> tags;
 
 	public Long getId() {
 		return id;
