@@ -27,6 +27,7 @@ import okhttp3.Response;
 public class HomePadraoActivity extends AppCompatActivity {
     private final OkHttpClient client = new OkHttpClient();
     private final MediaType mediaType = MediaType.parse("application/json");
+
     Button btnHistoricoPessoal, btnSaldoPessoal, btnPagamentosPessoal;
     TextView txtSaldoPessoal, txtPagamentoPessoal, txtSaldoProfissional, txtPagamentoProfissional, txtUsuario;
     SharedPreferences prefs;
@@ -39,24 +40,24 @@ public class HomePadraoActivity extends AppCompatActivity {
         btnHistoricoPessoal = findViewById(R.id.btnHistoricoPessoal);
         btnSaldoPessoal = findViewById(R.id.btnSaldoPessoal);
         btnPagamentosPessoal = findViewById(R.id.btnPagamentosPessoal);
-        txtSaldoPessoal = findViewById(R.id.txtSaldoPessoal);
-        txtPagamentoPessoal = findViewById(R.id.txtPagamentoPessoal);
+        txtSaldoPessoal = findViewById(R.id.txtSaldoCarteiraPessoal);
+        txtPagamentoPessoal = findViewById(R.id.txtPagamentoCarteiraPessoal);
         txtSaldoProfissional = findViewById(R.id.txtSaldoProfissional);
         txtPagamentoProfissional = findViewById(R.id.txtPagamentoProfissional);
         txtUsuario = findViewById(R.id.txtUsuario);
         chamada();
-
     }
 
     public void chamada() {
         prefs = HomePadraoActivity.this.getSharedPreferences("sm-pref", Context.MODE_PRIVATE);
         String token = prefs.getString("token","");
+        String email = prefs.getString("email","");
 
         Request request = new Request.Builder()
                 .url("https://smartcash-engine.herokuapp.com/engine/v1/nota/total?saldo_pessoal=true&saldo_comercial=true&pagamento_pessoal=true&pagamento_comercial=true")
                 .get()
                 .addHeader("Content-Type", "application/json")
-                .addHeader("email", "")
+                .addHeader("email", email)
                 .addHeader("Authorization", "Bearer " + token)
                 .build();
 
@@ -73,6 +74,7 @@ public class HomePadraoActivity extends AppCompatActivity {
                     txtPagamentoPessoal.setText("R$"+total.getTotalPessoal().getTotalPagamento().toString());
                     txtSaldoProfissional.setText("R$"+total.getTotalComercial().getTotalSaldo().toString());
                     txtPagamentoProfissional.setText("R$"+total.getTotalComercial().getTotalPagamento().toString());
+                    txtUsuario.setText(email);
                 }catch (RuntimeException | IOException e){
                     e.printStackTrace();
                 }
