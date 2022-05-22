@@ -21,6 +21,7 @@ public class Conta {
 		this.nome = nome;
 		this.valorTotal = valorTotal;
 		this.notas = notas;
+		this.tipo_conta = tipo_conta;
 		this.carteira = carteira;
 	}
 

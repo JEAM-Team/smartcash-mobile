@@ -63,7 +63,7 @@
         android:layout_width="194dp"
         android:layout_height="56dp"
         android:layout_marginTop="50dp"
-        android:onClick="btnAbrirHistorico"
+        android:onClick="btnAbrirHistoricoClick"
         android:text="Historico"
         app:layout_constraintEnd_toEndOf="@+id/boxPessoal"
         app:layout_constraintStart_toStartOf="@+id/boxPessoal"
@@ -75,7 +75,7 @@
         android:layout_height="59dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="57dp"
-        android:onClick="btnAbrirPagamento"
+        android:onClick="btnAbrirPagamentoClick"
         android:text="Pagamento"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/boxPessoal" />
@@ -86,7 +86,7 @@
         android:layout_height="59dp"
         android:layout_marginStart="59dp"
         android:layout_marginTop="15dp"
-        android:onClick="btnAbrirSaldo"
+        android:onClick="btnAbrirSaldoClick"
         android:text="Saldo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/boxPessoal" />
@@ -170,6 +170,7 @@
         android:layout_height="59dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="57dp"
+        android:onClick="btnAbrirPagamentoComercial"
         android:text="Pagamento"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/boxProfissional" />
@@ -180,6 +181,7 @@
         android:layout_height="59dp"
         android:layout_marginStart="59dp"
         android:layout_marginTop="15dp"
+        android:onClick="btnAbrirSaldoComercial"
         android:text="Saldo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/boxProfissional" />
@@ -248,6 +250,7 @@
         android:layout_width="194dp"
         android:layout_height="56dp"
         android:layout_marginTop="50dp"
+        android:onClick="btnAbrirHistoricoComercial"
         android:text="Historico"
         app:layout_constraintEnd_toEndOf="@+id/boxProfissional"
         app:layout_constraintStart_toStartOf="@+id/boxProfissional"
@@ -260,6 +263,7 @@
         android:layout_marginStart="108dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="108dp"
+        android:onClick="btnAbrirProdutoClick"
         android:text="Adicionar Produto"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

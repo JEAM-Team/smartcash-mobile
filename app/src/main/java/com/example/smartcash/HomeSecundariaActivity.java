@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.smartcash.models.dtos.CalculaResultadoDto;
 
+import com.example.smartcash.models.enums.TipoCarteira;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -81,6 +82,27 @@ public class HomeSecundariaActivity extends AppCompatActivity {
         Intent intent = new Intent(this, HomePadraoActivity.class);
         startActivity(intent);
     }
+
+    public void btnAbrirHistoricoClick(View view){
+        Intent intent = new Intent(this, HistoricoActivity.class);
+        intent.putExtra("tipoCarteira", TipoCarteira.PESSOAL);
+        startActivity(intent);
+    }
+
+    public void btnAbrirSaldoClick(View view){
+        Intent intent = new Intent(this, SaldoActivity.class);
+        intent.putExtra("tipoCarteira", TipoCarteira.PESSOAL);
+        startActivity(intent);
+    }
+
+    public void btnAbrirPagamentoClick(View view){
+        Intent intent = new Intent(this, PagamentoActivity.class);
+        intent.putExtra("tipoCarteira", TipoCarteira.PESSOAL);
+        startActivity(intent);
+    }
+
+
+
 
     public void Sair() {
         finish();
