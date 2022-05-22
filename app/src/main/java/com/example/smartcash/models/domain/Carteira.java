@@ -21,22 +21,6 @@ public class Carteira {
 		this.tags = tags;
 	}
 
-	public List<Conta> getContas() {
-		return contas;
-	}
-
-	public void setContas(List<Conta> contas) {
-		this.contas = contas;
-	}
-
-	public List<Tag> getTags() {
-		return tags;
-	}
-
-	public void setTags(List<Tag> tags) {
-		this.tags = tags;
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -51,6 +35,22 @@ public class Carteira {
 
 	public void setTipo(TipoCarteira tipo) {
 		this.tipo = tipo;
+	}
+
+	public List<Conta> getContas() {
+		return contas;
+	}
+
+	public void setContas(List<Conta> contas) {
+		this.contas = contas;
+	}
+
+	public List<Tag> getTags() {
+		return tags;
+	}
+
+	public void setTags(List<Tag> tags) {
+		this.tags = tags;
 	}
 
 	@Override

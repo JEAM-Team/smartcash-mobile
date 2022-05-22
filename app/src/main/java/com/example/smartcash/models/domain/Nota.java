@@ -1,7 +1,5 @@
 package com.example.smartcash.models.domain;
 
-import com.example.smartcash.models.domain.Carteira;
-import com.example.smartcash.models.domain.Conta;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.example.smartcash.models.enums.TipoNota;
 import com.example.smartcash.models.domain.Produto;
