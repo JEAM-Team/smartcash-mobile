@@ -121,6 +121,8 @@ public class MainActivity extends AppCompatActivity {
                                 .url(AppConstants.BASE_URL.getName().concat("/usuario?email="+email))
                                 .get()
                                 .addHeader("Content-Type", "application/json")
+                                .addHeader("email", email)
+                                .addHeader("Authorization", "Bearer " + token)
                                 .build();
 
                         Response responseUser = client.newCall(request).execute();
