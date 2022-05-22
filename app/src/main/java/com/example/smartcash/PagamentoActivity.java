@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.example.smartcash.models.adapters.PagamentoAdapter;
 import com.example.smartcash.models.domain.Nota;
 import com.example.smartcash.models.dtos.NotaDto;
+import com.example.smartcash.models.enums.TipoCarteira;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -48,12 +49,19 @@ public class PagamentoActivity extends AppCompatActivity {
     private RecyclerView listaPagamentos;
     private PagamentoAdapter pagamentoAdapter;
 
+    private TipoCarteira tipoCarteira;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pagamento);
         listaPagamentos = (RecyclerView) findViewById(R.id.listaPagamentos);
         floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            tipoCarteira = (TipoCarteira) extras.get("tipoCarteira");
+        }
 
         try {
             setRecycler();
@@ -72,7 +80,7 @@ public class PagamentoActivity extends AppCompatActivity {
         listaPagamentos.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         listaPagamentos.setLayoutManager(layoutManager);
         listaPagamentos.setAdapter(pagamentoAdapter);
-    } //aq se pausar funciona pq??
+    }
 
     public <T> List<T> getList(String jsonArray, Class<T> clazz) {
         Type typeOfT = TypeToken.getParameterized(List.class, clazz).getType();
@@ -89,7 +97,7 @@ public class PagamentoActivity extends AppCompatActivity {
 
 
         Request request = new Request.Builder()
-                .url("https://smartcash-engine.herokuapp.com/engine/v1/nota/busca?tipo_carteira=PESSOAL&tipo_nota=PAGAMENTO")
+                .url("https://smartcash-engine.herokuapp.com/engine/v1/nota/busca?tipo_carteira="+tipoCarteira.name()+"&tipo_nota=PAGAMENTO")
                 .get()
                 .addHeader("Content-Type", "application/json")
                 .addHeader("email", email)
@@ -129,6 +137,7 @@ public class PagamentoActivity extends AppCompatActivity {
 
     public void btnAdicionarPagamento(View view){
         Intent intent = new  Intent(getApplicationContext(), AdicionarPagamentoActivity.class);
+        intent.putExtra("tipoCarteira", tipoCarteira);
         startActivity(intent);
     }
 }

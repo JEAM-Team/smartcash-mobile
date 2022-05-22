@@ -15,6 +15,7 @@ import android.view.View;
 import com.example.smartcash.models.adapters.SaldoAdapter;
 import com.example.smartcash.models.domain.Nota;
 import com.example.smartcash.models.dtos.NotaDto;
+import com.example.smartcash.models.enums.TipoCarteira;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -45,12 +46,19 @@ public class SaldoActivity extends AppCompatActivity {
     private RecyclerView listaSaldo;
     private SaldoAdapter saldoAdapter;
 
+    private TipoCarteira tipoCarteira;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saldo);
         listaSaldo = (RecyclerView) findViewById(R.id.listaSaldo);
         floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            tipoCarteira = (TipoCarteira) extras.get("tipoCarteira");
+        }
 
         try {
             setRecycler();
@@ -61,6 +69,7 @@ public class SaldoActivity extends AppCompatActivity {
 
     public void btnAbrirAdicionarSaldo(View view){
         Intent intent = new  Intent(getApplicationContext(), AdicionarSaldoActivity.class);
+        intent.putExtra("tipoCarteira", tipoCarteira);
         startActivity(intent);
     }
 
@@ -90,7 +99,7 @@ public class SaldoActivity extends AppCompatActivity {
 
 
         Request request = new Request.Builder()
-                .url("https://smartcash-engine.herokuapp.com/engine/v1/nota/busca?tipo_carteira=PESSOAL&tipo_nota=RECEBIMENTO")
+                .url("https://smartcash-engine.herokuapp.com/engine/v1/nota/busca?tipo_carteira="+tipoCarteira.name()+"&tipo_nota=RECEBIMENTO")
                 .get()
                 .addHeader("Content-Type", "application/json")
                 .addHeader("email", email)
