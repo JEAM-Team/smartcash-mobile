@@ -38,7 +38,7 @@ import okhttp3.Response;
 public class SaldoActivity extends AppCompatActivity {
     private final OkHttpClient client = new OkHttpClient();
     private final MediaType mediaType = MediaType.parse("application/json");
-    private FloatingActionButton floatingActionButton;
+    private FloatingActionButton botaoAbrirAdicionarSaldo;
 
     SharedPreferences prefs;
     SharedPreferences.Editor edit;
@@ -53,7 +53,7 @@ public class SaldoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saldo);
         listaSaldo = (RecyclerView) findViewById(R.id.listaSaldo);
-        floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+        botaoAbrirAdicionarSaldo = (FloatingActionButton) findViewById(R.id.floatingActionButton);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {

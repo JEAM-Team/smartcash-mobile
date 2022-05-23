@@ -61,6 +61,12 @@ public class AdicionarSaldoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adicionar_saldo);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            tipoCarteira = (TipoCarteira) extras.get("tipoCarteira");
+        }
+
         editTxtTitulo = findViewById(R.id.txtTituloSaldo);
         editTxtValor = findViewById(R.id.txtValorSaldo);
         editTxtRepeticao = findViewById(R.id.switchRepetirSaldo);
@@ -69,13 +75,11 @@ public class AdicionarSaldoActivity extends AppCompatActivity {
         spinnerContaSaldo = findViewById(R.id.spinnerContaSaldo);
         spinnerTagSaldo = findViewById(R.id.spinnerTagSaldo);
         buttonPostSaldo = findViewById(R.id.btnAdicionarSaldo);
+
         getCarteira();
         buttonPostSaldo.setOnClickListener(view -> postSaldo());
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            tipoCarteira = (TipoCarteira) extras.get("tipoCarteira");
-        }
+
     }
 
     private void getCarteira() {
