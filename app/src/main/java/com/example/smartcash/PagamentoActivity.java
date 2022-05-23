@@ -50,15 +50,19 @@ public class PagamentoActivity extends AppCompatActivity {
     private PagamentoAdapter pagamentoAdapter;
 
     private TipoCarteira tipoCarteira;
+    private NotaDto addNota;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pagamento);
 
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             tipoCarteira = (TipoCarteira) extras.get("tipoCarteira");
+            addNota = (NotaDto) extras.get("pagamento");
+
         }
 
         listaPagamentos = (RecyclerView) findViewById(R.id.listaPagamentos);
@@ -78,6 +82,9 @@ public class PagamentoActivity extends AppCompatActivity {
         String json = prefs.getString("listaPagamento","");
 
         pagamentoAdapter = new PagamentoAdapter(converterParaNotaDto(json));
+        if(addNota != null){
+            pagamentoAdapter.addItem(addNota);
+        }
         listaPagamentos.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         listaPagamentos.setLayoutManager(layoutManager);
         listaPagamentos.setAdapter(pagamentoAdapter);

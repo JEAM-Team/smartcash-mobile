@@ -139,6 +139,7 @@ public class AdicionarSaldoActivity extends AppCompatActivity {
 
     public void AbrirSaldo() {
         Intent intent = new Intent(this, SaldoActivity.class);
+        intent.putExtra("tipoCarteira", tipoCarteira);
         startActivity(intent);
     }
 
@@ -149,7 +150,7 @@ public class AdicionarSaldoActivity extends AppCompatActivity {
         Double valor = Double.parseDouble(editTxtValor.getText().toString().replace(",","."));
         Boolean repeticao = Boolean.parseBoolean(editTxtRepeticao.getText().toString());
         String data = editTxtData.getText().toString();
-        Integer qtd_vezes = Integer.parseInt(editTxtVezes.getText().toString());
+        Integer qtd_vezes = !repeticao || editTxtVezes.getText().toString().isEmpty() ? 0 : Integer.parseInt(editTxtVezes.getText().toString());
         String tipo = "RECEBIMENTO";
         Long conta = contaId;
         Long tag = tagId;

@@ -33,6 +33,11 @@ public class PagamentoAdapter extends RecyclerView.Adapter<CardPagamentoHolder> 
         holder.txtDataPagamento.setText(notas.get(position).getData().toString());
     }
 
+    public void addItem(NotaDto notaDto){
+        notas.add(notaDto);
+        notifyItemInserted(getItemCount());
+    }
+
     @Override
     public int getItemCount() {
         return notas != null ? notas.size() : 0;

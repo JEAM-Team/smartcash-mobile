@@ -61,8 +61,13 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void AbrirHome() {
+    public void AbrirHomePessoal() {
         Intent intent = new Intent(this, HomeSecundariaActivity.class);
+        startActivity(intent);
+    }
+
+    public void AbrirHomeComercial() {
+        Intent intent = new Intent(this, HomePadraoActivity.class);
         startActivity(intent);
     }
 
@@ -129,6 +134,8 @@ public class MainActivity extends AppCompatActivity {
 
                         Usuario usuario = new ObjectMapper().readValue(responseUser.body().string(), Usuario.class);
 
+                        Long idCarteiraComercial = 0L;
+
                         for(Carteira carteira : usuario.getCarteiras()){
                             switch(carteira.getTipo()){
                                 case PESSOAL:
@@ -138,11 +145,16 @@ public class MainActivity extends AppCompatActivity {
                                 case COMERCIAL:
                                     edit.putLong("idCarteiraProfissional", carteira.getId());
                                     edit.commit();
+                                    idCarteiraComercial = carteira.getId();
                                     break;
                             }
                         }
 
-                        AbrirHome();
+                        if(idCarteiraComercial == 0){
+                            AbrirHomePessoal();
+                        }else{
+                            AbrirHomeComercial();
+                        }
                     } else if (response.code() == 403) {
                         MainActivity.this.runOnUiThread(() -> Toast.makeText(MainActivity.this,
                                 "Usuario não encontrado, por favor cadastre-se.", Toast.LENGTH_LONG).show());

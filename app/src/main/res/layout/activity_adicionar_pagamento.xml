@@ -6,20 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".AdicionarPagamentoActivity">
 
-    <TextView
-        android:id="@+id/txtUsuario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="10dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/divider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/btnSair"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="119dp"
         android:layout_height="40dp"
         android:backgroundTint="#FFFFFF"
@@ -29,8 +18,7 @@
         app:iconTint="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="#FFFFFF"
-        style="?android:attr/borderlessButtonStyle" />
+        app:strokeColor="#FFFFFF" />
 
     <View
         android:id="@+id/divider"
@@ -88,10 +76,13 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="1dp"
         android:text="Contas"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        app:layout_constraintStart_toStartOf="@+id/spinnerContaPagamento"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerContaPagamento"
+        app:layout_constraintStart_toStartOf="@+id/btnAbrirModalConta"
         app:layout_constraintTop_toBottomOf="@+id/txtTituloPagamento" />
 
     <Spinner
@@ -152,14 +143,12 @@
 
     <Spinner
         android:id="@+id/spinnerTagPagamento"
-        android:layout_width="380dp"
+        android:layout_width="353dp"
         android:layout_height="48dp"
-        android:layout_marginStart="15dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="15dp"
         android:contentDescription="Nome da Tag"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtQtdRepeticoesPagamento" />
 
     <TextView
@@ -167,8 +156,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tag"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerTagPagamento"
-        app:layout_constraintStart_toStartOf="@+id/spinnerTagPagamento" />
+        app:layout_constraintBottom_toTopOf="@+id/btnAbrirModalTag"
+        app:layout_constraintEnd_toEndOf="@+id/btnAbrirModalTag" />
 
     <Button
         android:id="@+id/btnAdicionarPagamento"
@@ -177,6 +166,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="15dp"
+        android:onClick="AbrirPagamento"
         android:text="Adicionar Pagamento"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
@@ -191,5 +181,32 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         app:layout_constraintBottom_toTopOf="@+id/txtQtdRepeticoesPagamento"
         app:layout_constraintStart_toStartOf="@+id/txtQtdRepeticoesPagamento" />
+
+    <Button
+        android:id="@+id/btnAbrirModalTag"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="45dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="7dp"
+        android:contentDescription="BotaoAdicionar"
+        android:textColor="#878787"
+        app:icon="@android:drawable/ic_menu_add"
+        app:iconTint="#000000"
+        app:layout_constraintEnd_toStartOf="@+id/spinnerTagPagamento"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDataVencimentoPagamento" />
+
+    <Button
+        android:id="@+id/btnAbrirModalConta"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="48dp"
+        android:layout_height="50dp"
+        android:contentDescription="BotaoAdicionar"
+        android:textColor="#878787"
+        app:icon="@android:drawable/ic_menu_add"
+        app:iconTint="#000000"
+        app:layout_constraintEnd_toStartOf="@+id/spinnerContaPagamento"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

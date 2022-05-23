@@ -6,8 +6,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.PopupWindow;
 
 import com.example.smartcash.models.adapters.ProdutoAdapter;
 import com.example.smartcash.models.adapters.SaldoAdapter;
@@ -57,11 +63,18 @@ public class ProdutoActivity extends AppCompatActivity {
         }
     }
 
-    //TODO COLOCAR PRA ABRIR MODAL
-//    public void btnAbrirAdicionarSaldo(View view){
-//        Intent intent = new  Intent(getApplicationContext(), AdicionarSaldoActivity.class);
-//        startActivity(intent);
-//    }
+    public void btnAbrirProduto(View view){
+//        LayoutInflater layoutInflater = (LayoutInflater)getBaseContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+//        View layout = layoutInflater.inflate(R.layout.activity_modal_produto, null);
+//        final PopupWindow popupWindow = new PopupWindow(
+//                layout,
+//                FrameLayout.LayoutParams.WRAP_CONTENT,
+//                FrameLayout.LayoutParams.WRAP_CONTENT);
+//
+//        popupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);
+        Intent intent = new  Intent(getApplicationContext(), ModalProdutoActivity.class);
+        startActivity(intent);
+    }
 
     public <T> List<T> getList(String jsonArray, Class<T> clazz) {
         Type typeOfT = TypeToken.getParameterized(List.class, clazz).getType();
