@@ -59,6 +59,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtProduto" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listaProduto"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/view2"
@@ -78,10 +79,58 @@
         android:layout_marginBottom="20dp"
         android:backgroundTint="#FFC107"
         android:clickable="true"
+        android:contentDescription="Botao"
         app:layout_constraintBottom_toTopOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtProduto"
+        app:layout_constraintVertical_bias="0.052"
         app:srcCompat="@android:drawable/ic_input_add" />
+
+    <TextView
+        android:id="@+id/txtNomeProduto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="5dp"
+        android:text="Nome"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/view2"
+        app:layout_constraintEnd_toStartOf="@+id/txtCodigoProduto"
+        app:layout_constraintHorizontal_bias="0.152"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/floatingActionButton"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/txtCodigoProduto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="30dp"
+        android:text="Codigo"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/txtValorProduto"
+        app:layout_constraintStart_toEndOf="@+id/txtNomeProduto"
+        app:layout_constraintTop_toTopOf="@+id/txtNomeProduto" />
+
+    <TextView
+        android:id="@+id/txtValorProduto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="20dp"
+        android:text="Valor"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.738"
+        app:layout_constraintStart_toEndOf="@+id/txtCodigoProduto"
+        app:layout_constraintTop_toTopOf="@+id/txtCodigoProduto" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
