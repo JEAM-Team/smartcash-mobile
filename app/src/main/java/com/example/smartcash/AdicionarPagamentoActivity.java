@@ -58,6 +58,12 @@ public class AdicionarPagamentoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adicionar_pagamento);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            tipoCarteira = (TipoCarteira) extras.get("tipoCarteira");
+        }
+
         editTxtTitulo = findViewById(R.id.txtTituloPagamento);
         editTxtValor = findViewById(R.id.txtValorPagamento);
         editTxtRepeticao = findViewById(R.id.switchRepetir);
@@ -66,13 +72,11 @@ public class AdicionarPagamentoActivity extends AppCompatActivity {
         spinnerContaPagamento = findViewById(R.id.spinnerContaPagamento);
         spinnerTagPagamento = findViewById(R.id.spinnerTagPagamento);
         buttonPostPagamento = findViewById(R.id.btnAdicionarPagamento);
+
         getCarteira();
         buttonPostPagamento.setOnClickListener(view -> postPagamento());
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            tipoCarteira = (TipoCarteira) extras.get("tipoCarteira");
-        }
+
     }
 
     private void getCarteira() {

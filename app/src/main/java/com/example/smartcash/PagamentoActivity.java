@@ -55,13 +55,14 @@ public class PagamentoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pagamento);
-        listaPagamentos = (RecyclerView) findViewById(R.id.listaPagamentos);
-        floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             tipoCarteira = (TipoCarteira) extras.get("tipoCarteira");
         }
+
+        listaPagamentos = (RecyclerView) findViewById(R.id.listaPagamentos);
+        floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
 
         try {
             setRecycler();
