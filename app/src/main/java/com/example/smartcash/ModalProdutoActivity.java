@@ -59,16 +59,36 @@ public class ModalProdutoActivity extends AppCompatActivity {
         prefs = ModalProdutoActivity.this.getSharedPreferences("sm-pref", Context.MODE_PRIVATE);
         String token = prefs.getString("token", "");
         String email = prefs.getString("email", "");
+        Long carteiraId = prefs.getLong("idCarteiraProfissional", 0L);
 
-        Request requestById = new Request.Builder()
-                .url("https://smartcash-engine.herokuapp.com/engine/v1/carteira/busca?tipo=PESSOAL")
-                .get()
+
+        String nomeProduto = txtNome3.getText().toString();
+        String codigoProduto = editTxtCodigo.getText().toString();
+        String descricaoProduto = editTxtDecricao.getText().toString();
+        String valorProduto = editTxtValor3.getText().toString();
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("nome", nomeProduto);
+            jsonObject.put("codigo", codigoProduto);
+            jsonObject.put("descricao", descricaoProduto);
+            jsonObject.put("valor", valorProduto);
+            jsonObject.put("carteira_id", carteiraId);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        RequestBody body = RequestBody.create(String.valueOf(jsonObject), mediaType);
+
+        Request request = new Request.Builder()
+                .url("https://smartcash-engine.herokuapp.com/engine/v1/produto")
+                .post(body)
                 .addHeader("Content-Type", "application/json")
-                .addHeader("email", email)
                 .addHeader("Authorization", "Bearer " + token)
                 .build();
 
-        client.newCall(requestById).enqueue(new Callback() {
+        client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
 
@@ -76,54 +96,14 @@ public class ModalProdutoActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                Long carteira = new ObjectMapper().readValue(response.body().string(), Carteira[].class)[0].getId();
-
-                String nomeProduto = txtNome3.getText().toString();
-                String codigoProduto = editTxtCodigo.getText().toString();
-                String descricaoProduto = editTxtDecricao.getText().toString();
-                String valorProduto = editTxtValor3.getText().toString();
-
-                JSONObject jsonObject = new JSONObject();
-                try {
-                    jsonObject.put("nome", nomeProduto);
-                    jsonObject.put("codigo", codigoProduto);
-                    jsonObject.put("descricao", descricaoProduto);
-                    jsonObject.put("valor", valorProduto);
-                    jsonObject.put("carteira_id", carteira);
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                if (response.isSuccessful()) {
+                    ModalProdutoActivity.this.runOnUiThread(() -> Toast.makeText(ModalProdutoActivity.this,
+                            "Produto enviada com Sucesso!", Toast.LENGTH_LONG).show());
+                    finish();
+                } else if (response.code() == 403) {
+                    ModalProdutoActivity.this.runOnUiThread(() -> Toast.makeText(ModalProdutoActivity.this,
+                            "Token expirado. Por favor tente novamente.", Toast.LENGTH_LONG).show());
                 }
-
-                RequestBody body = RequestBody.create(String.valueOf(jsonObject), mediaType);
-
-                Request request = new Request.Builder()
-                        .url("https://smartcash-engine.herokuapp.com/engine/v1/produto")
-                        .post(body)
-                        .addHeader("Content-Type", "application/json")
-                        .addHeader("Authorization", "Bearer " + token)
-                        .build();
-
-                client.newCall(request).enqueue(new Callback() {
-                    @Override
-                    public void onFailure(@NonNull Call call, @NonNull IOException e) {
-
-                    }
-
-                    @Override
-                    public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                        if (response.isSuccessful()) {
-                            ModalProdutoActivity.this.runOnUiThread(() -> Toast.makeText(ModalProdutoActivity.this,
-                                    "Produto enviada com Sucesso!", Toast.LENGTH_LONG).show());
-
-                            //TODO fecher modal
-
-                        } else if (response.code() == 403) {
-                            ModalProdutoActivity.this.runOnUiThread(() -> Toast.makeText(ModalProdutoActivity.this,
-                                    "Token expirado. Por favor tente novamente.", Toast.LENGTH_LONG).show());
-                        }
-                    }
-                });
             }
         });
     }

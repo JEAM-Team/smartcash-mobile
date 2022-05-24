@@ -49,6 +49,12 @@ public class HomePadraoActivity extends AppCompatActivity {
         chamada();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        chamada();
+    }
+
     public void chamada() {
         prefs = HomePadraoActivity.this.getSharedPreferences("sm-pref", Context.MODE_PRIVATE);
         String token = prefs.getString("token","");

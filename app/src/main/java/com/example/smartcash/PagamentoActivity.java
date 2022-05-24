@@ -11,10 +11,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
+import com.example.smartcash.dataset.PagamentoComercialDataset;
+import com.example.smartcash.dataset.PagamentoPessoalDataset;
+import com.example.smartcash.dataset.SaldoComercialDataset;
+import com.example.smartcash.dataset.SaldoPessoalDataset;
 import com.example.smartcash.models.adapters.PagamentoAdapter;
+import com.example.smartcash.models.adapters.SaldoAdapter;
 import com.example.smartcash.models.domain.Nota;
 import com.example.smartcash.models.dtos.NotaDto;
 import com.example.smartcash.models.enums.TipoCarteira;
@@ -25,7 +28,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +55,12 @@ public class PagamentoActivity extends AppCompatActivity {
     private NotaDto addNota;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        buscarPagamentos();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pagamento);
@@ -69,6 +77,7 @@ public class PagamentoActivity extends AppCompatActivity {
         floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
 
         try {
+            buscarPagamentos();
             setRecycler();
         } catch (JsonProcessingException e) {
             e.printStackTrace();
@@ -77,11 +86,18 @@ public class PagamentoActivity extends AppCompatActivity {
 
     public void setRecycler() throws JsonProcessingException {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        BuscarPagamentos();
+        buscarPagamentos();
 
-        String json = prefs.getString("listaPagamento","");
+        switch (tipoCarteira) {
+            case PESSOAL:
+                pagamentoAdapter = new PagamentoAdapter(PagamentoPessoalDataset.getPagamentos());
+                break;
+            case COMERCIAL:
+                pagamentoAdapter = new PagamentoAdapter(PagamentoComercialDataset.getPagamentos());
+                break;
+        }
 
-        pagamentoAdapter = new PagamentoAdapter(converterParaNotaDto(json));
+
         if(addNota != null){
             pagamentoAdapter.addItem(addNota);
         }
@@ -96,9 +112,8 @@ public class PagamentoActivity extends AppCompatActivity {
     }
 
 
-    public void BuscarPagamentos(){
+    public void buscarPagamentos(){
         prefs = PagamentoActivity.this.getSharedPreferences("sm-pref", Context.MODE_PRIVATE);
-        edit = prefs.edit();
 
         String token = prefs.getString("token","");
         String email = prefs.getString("email","");
@@ -119,8 +134,8 @@ public class PagamentoActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                edit.putString("listaPagamento", response.body().string());
-                edit.commit();
+                List<NotaDto> notas = converterParaNotaDto(response.body().string());
+                runOnUiThread(() -> pagamentoAdapter.updated(tipoCarteira, notas));
             }
         });
     }

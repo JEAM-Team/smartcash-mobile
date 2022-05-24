@@ -7,8 +7,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartcash.R;
+import com.example.smartcash.dataset.PagamentoComercialDataset;
+import com.example.smartcash.dataset.PagamentoPessoalDataset;
+import com.example.smartcash.dataset.SaldoComercialDataset;
+import com.example.smartcash.dataset.SaldoPessoalDataset;
 import com.example.smartcash.models.domain.Nota;
 import com.example.smartcash.models.dtos.NotaDto;
+import com.example.smartcash.models.enums.TipoCarteira;
 import com.example.smartcash.models.holders.CardPagamentoHolder;
 
 import java.util.ArrayList;
@@ -31,6 +36,21 @@ public class PagamentoAdapter extends RecyclerView.Adapter<CardPagamentoHolder> 
         holder.txtDadoPagamento.setText(notas.get(position).getTitulo());
         holder.txtValorPagamento.setText(notas.get(position).getValor().toString());
         holder.txtDataPagamento.setText(notas.get(position).getData().toString());
+    }
+
+    public void updated(TipoCarteira tipo, List<NotaDto> n) {
+        int initial = 0;
+        switch (tipo){
+            case PESSOAL:
+                initial = PagamentoPessoalDataset.getPagamentos().size();
+                PagamentoPessoalDataset.updateAll(n);
+                break;
+            case COMERCIAL:
+                initial = PagamentoComercialDataset.getPagamentos().size();
+                PagamentoComercialDataset.updateAll(n);
+                break;
+        }
+        notifyItemRangeInserted(initial, notas.size());
     }
 
     public void addItem(NotaDto notaDto){

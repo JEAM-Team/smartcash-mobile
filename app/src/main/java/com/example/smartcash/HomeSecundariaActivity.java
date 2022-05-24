@@ -45,9 +45,20 @@ public class HomeSecundariaActivity extends AppCompatActivity {
         Button btnSaldoPessoal = (Button) findViewById(R.id.btnSaldoPessoal);
         Button btnPagamentosPessoal = (Button) findViewById(R.id.btnPagamentosPessoal);
         Button btnHistoricoPessoal = (Button) findViewById(R.id.btnHistoricoPessoal);
+        btnHistoricoPessoal.setOnClickListener(view -> {
+            Intent intent = new Intent(this, HistoricoActivity.class);
+            intent.putExtra("tipoCarteira", TipoCarteira.PESSOAL);
+            startActivity(intent);
+        });
         txtSaldoCarteiraPessoal = findViewById(R.id.txtSaldoCarteiraPessoal);
         txtPagamentoCarteiraPessoal = findViewById(R.id.txtPagamentoCarteiraPessoal);
         txtUsuario = findViewById(R.id.txtUsuario);
+        chamada();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         chamada();
     }
 
@@ -127,12 +138,6 @@ public class HomeSecundariaActivity extends AppCompatActivity {
 
     public void btnCarteiraProfissionalClick(View view) {
         criarCarteiraComercial();
-    }
-
-    public void btnAbrirHistoricoClick(View view){
-        Intent intent = new Intent(this, HistoricoActivity.class);
-        intent.putExtra("tipoCarteira", TipoCarteira.PESSOAL);
-        startActivity(intent);
     }
 
     public void btnAbrirSaldoClick(View view){

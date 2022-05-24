@@ -160,7 +160,7 @@ public class AdicionarPagamentoActivity extends AppCompatActivity {
         String tipo = "PAGAMENTO";
         Long conta = contaId;
         Long tag = tagId;
-        Long carteira = tagId;
+        Long carteira = carteiraId;
 
         OkHttpClient client = new OkHttpClient();
 
@@ -207,6 +207,7 @@ public class AdicionarPagamentoActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
                     pagamento(notaDto);
+                    finish();
                 }
             }
         });
