@@ -3,17 +3,33 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/angel/OneDrive/Documentos/JEAM/smartcash-mobile/app/src/main/res/layout/activity_adicionar_saldo.xml" value="0.25" />
-        <entry key="..\:/Users/angel/OneDrive/Documentos/JEAM/smartcash-mobile/app/src/main/res/layout/activity_home.xml" value="0.25" />
-        <entry key="..\:/Users/angel/OneDrive/Documentos/JEAM/smartcash-mobile/app/src/main/res/layout/activity_login.xml" value="0.3625" />
-        <entry key="..\:/Users/ricma/Desktop/smartcash-mobile/app/src/main/res/drawable/custom_button.xml" value="0.1985" />
-        <entry key="..\:/Users/ricma/Desktop/smartcash-mobile/app/src/main/res/drawable/custtom_button.xml" value="0.1985" />
-        <entry key="..\:/Users/ricma/Desktop/smartcash-mobile/app/src/main/res/drawable/dotted.xml" value="0.1985" />
-        <entry key="..\:/Users/ricma/Desktop/smartcash-mobile/app/src/main/res/drawable/radius_button.xml" value="0.1985" />
-        <entry key="..\:/Users/ricma/Desktop/smartcash-mobile/app/src/main/res/layout/login.xml" value="0.33" />
+        <entry key="..\:/MOBILE/smartcash-mobile/app/src/main/res/drawable/box.xml" value="0.1025" />
+        <entry key="..\:/MOBILE/smartcash-mobile/app/src/main/res/layout/activity_adicionar_pagamento.xml" value="0.33" />
+        <entry key="..\:/MOBILE/smartcash-mobile/app/src/main/res/layout/activity_adicionar_saldo.xml" value="0.25" />
+        <entry key="..\:/MOBILE/smartcash-mobile/app/src/main/res/layout/activity_cadastro.xml" value="0.25" />
+        <entry key="..\:/MOBILE/smartcash-mobile/app/src/main/res/layout/activity_historico.xml" value="0.3625" />
+        <entry key="..\:/MOBILE/smartcash-mobile/app/src/main/res/layout/activity_home.xml" value="0.22" />
+        <entry key="..\:/MOBILE/smartcash-mobile/app/src/main/res/layout/activity_home_secundaria.xml" value="0.25" />
+        <entry key="..\:/MOBILE/smartcash-mobile/app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="..\:/MOBILE/smartcash-mobile/app/src/main/res/layout/activity_modal_conta.xml" value="0.3625" />
+        <entry key="..\:/MOBILE/smartcash-mobile/app/src/main/res/layout/activity_modal_produto.xml" value="0.3625" />
+        <entry key="..\:/MOBILE/smartcash-mobile/app/src/main/res/layout/activity_modal_tag.xml" value="0.3625" />
+        <entry key="..\:/MOBILE/smartcash-mobile/app/src/main/res/layout/activity_pagamento.xml" value="0.25" />
+        <entry key="..\:/MOBILE/smartcash-mobile/app/src/main/res/layout/activity_produto.xml" value="0.3625" />
+        <entry key="..\:/MOBILE/smartcash-mobile/app/src/main/res/layout/activity_saldo.xml" value="0.33" />
+        <entry key="..\:/MOBILE/smartcash-mobile/app/src/main/res/layout/activity_splash.xml" value="0.2" />
+        <entry key="..\:/MOBILE/smartcash-mobile/app/src/main/res/layout/card_historico.xml" value="0.3625" />
+        <entry key="..\:/MOBILE/smartcash-mobile/app/src/main/res/layout/card_pagamento.xml" value="0.3625" />
+        <entry key="..\:/MOBILE/smartcash-mobile/app/src/main/res/layout/card_produto.xml" value="0.3625" />
+        <entry key="..\:/MOBILE/smartcash-mobile/app/src/main/res/layout/card_saldo.xml" value="0.3625" />
+        <entry key="..\:/MOBILE/smartcash-mobile/app/src/main/res/layout/login.xml" value="0.33" />
       </map>
     </option>
   </component>
-  <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
 </project>

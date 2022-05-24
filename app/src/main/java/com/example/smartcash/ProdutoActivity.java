@@ -6,14 +6,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 
+import com.example.smartcash.dataset.ProdutoDataset;
 import com.example.smartcash.models.adapters.ProdutoAdapter;
-import com.example.smartcash.models.adapters.SaldoAdapter;
 import com.example.smartcash.models.domain.Produto;
 import com.example.smartcash.models.dtos.ProdutoDto;
-import com.example.smartcash.models.enums.TipoCarteira;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -57,11 +58,16 @@ public class ProdutoActivity extends AppCompatActivity {
         }
     }
 
-    //TODO COLOCAR PRA ABRIR MODAL
-//    public void btnAbrirAdicionarSaldo(View view){
-//        Intent intent = new  Intent(getApplicationContext(), AdicionarSaldoActivity.class);
-//        startActivity(intent);
-//    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        buscarProduto();
+    }
+
+    public void btnAbrirProduto(View view){
+        Intent intent = new  Intent(getApplicationContext(), ModalProdutoActivity.class);
+        startActivity(intent);
+    }
 
     public <T> List<T> getList(String jsonArray, Class<T> clazz) {
         Type typeOfT = TypeToken.getParameterized(List.class, clazz).getType();
@@ -70,19 +76,16 @@ public class ProdutoActivity extends AppCompatActivity {
 
     public void setRecycler() throws JsonProcessingException {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        BuscarProduto();
+        buscarProduto();
 
-        String json = prefs.getString("listaProduto","");
-
-        produtoAdapter = new ProdutoAdapter(converterParaProdutoDto(json));
+        produtoAdapter = new ProdutoAdapter(ProdutoDataset.getProdutos());
         listaProduto.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         listaProduto.setLayoutManager(layoutManager);
         listaProduto.setAdapter(produtoAdapter);
     }
 
-    public void BuscarProduto(){
+    public void buscarProduto(){
         prefs = ProdutoActivity.this.getSharedPreferences("sm-pref", Context.MODE_PRIVATE);
-        edit = prefs.edit();
 
         String token = prefs.getString("token","");
         String email = prefs.getString("email","");
@@ -104,8 +107,8 @@ public class ProdutoActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                edit.putString("listaProduto", response.body().string());
-                edit.commit();
+                List<ProdutoDto> produtoDtos = converterParaProdutoDto(response.body().string());
+                runOnUiThread(() -> produtoAdapter.updated(produtoDtos));
             }
         });
     }

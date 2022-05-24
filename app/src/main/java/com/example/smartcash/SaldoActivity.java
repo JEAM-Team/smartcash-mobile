@@ -1,17 +1,18 @@
 package com.example.smartcash;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-
-import android.view.View;
-
+import com.example.smartcash.dataset.SaldoComercialDataset;
+import com.example.smartcash.dataset.SaldoPessoalDataset;
 import com.example.smartcash.models.adapters.SaldoAdapter;
 import com.example.smartcash.models.domain.Nota;
 import com.example.smartcash.models.dtos.NotaDto;
@@ -61,14 +62,15 @@ public class SaldoActivity extends AppCompatActivity {
         }
 
         try {
+            buscarSaldo();
             setRecycler();
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
     }
 
-    public void btnAbrirAdicionarSaldo(View view){
-        Intent intent = new  Intent(getApplicationContext(), AdicionarSaldoActivity.class);
+    public void btnAbrirAdicionarSaldo(View view) {
+        Intent intent = new Intent(getApplicationContext(), AdicionarSaldoActivity.class);
         intent.putExtra("tipoCarteira", tipoCarteira);
         startActivity(intent);
     }
@@ -80,26 +82,29 @@ public class SaldoActivity extends AppCompatActivity {
 
     public void setRecycler() throws JsonProcessingException {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        BuscarSaldo();
-
-        String json = prefs.getString("listaSaldo","");
-
-        saldoAdapter = new SaldoAdapter(converterParaNotaDto(json));
+        buscarSaldo();
+        switch (tipoCarteira) {
+            case PESSOAL:
+                saldoAdapter = new SaldoAdapter(SaldoPessoalDataset.getSaldos());
+                break;
+            case COMERCIAL:
+                saldoAdapter = new SaldoAdapter(SaldoComercialDataset.getSaldos());
+                break;
+        }
         listaSaldo.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         listaSaldo.setLayoutManager(layoutManager);
         listaSaldo.setAdapter(saldoAdapter);
     }
 
-    public void BuscarSaldo(){
+    public void buscarSaldo() {
         prefs = SaldoActivity.this.getSharedPreferences("sm-pref", Context.MODE_PRIVATE);
-        edit = prefs.edit();
 
-        String token = prefs.getString("token","");
-        String email = prefs.getString("email","");
+        String token = prefs.getString("token", "");
+        String email = prefs.getString("email", "");
 
 
         Request request = new Request.Builder()
-                .url("https://smartcash-engine.herokuapp.com/engine/v1/nota/busca?tipo_carteira="+tipoCarteira.name()+"&tipo_nota=RECEBIMENTO")
+                .url("https://smartcash-engine.herokuapp.com/engine/v1/nota/busca?tipo_carteira=" + tipoCarteira.name() + "&tipo_nota=RECEBIMENTO")
                 .get()
                 .addHeader("Content-Type", "application/json")
                 .addHeader("email", email)
@@ -113,8 +118,8 @@ public class SaldoActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                edit.putString("listaSaldo", response.body().string());
-                edit.commit();
+                List<NotaDto> notas = converterParaNotaDto(response.body().string());
+                runOnUiThread(() -> saldoAdapter.updated(tipoCarteira, notas));
             }
         });
     }
@@ -135,5 +140,12 @@ public class SaldoActivity extends AppCompatActivity {
         }
 
         return notasDto;
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        buscarSaldo();
     }
 }

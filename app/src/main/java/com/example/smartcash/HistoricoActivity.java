@@ -1,19 +1,19 @@
 package com.example.smartcash;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Build;
+import android.os.Bundle;
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.os.Build;
-import android.os.Bundle;
-
+import com.example.smartcash.dataset.HistoricoDataset;
 import com.example.smartcash.models.adapters.HistoricoAdapter;
 import com.example.smartcash.models.domain.Atividade;
-import com.example.smartcash.models.domain.Nota;
 import com.example.smartcash.models.dtos.NotaDto;
 import com.example.smartcash.models.enums.TipoCarteira;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -21,13 +21,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -63,25 +61,29 @@ public class HistoricoActivity extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    protected void onResume() {
+        super.onResume();
+        buscarHistorico();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void setRecycler() throws JsonProcessingException {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        BuscarHistorico();
+        buscarHistorico();
 
-        String json = prefs.getString("listaDoHistorico","");
-
-        historicoAdapter = new HistoricoAdapter(converterParaNotaDto(json));
+        historicoAdapter = new HistoricoAdapter(HistoricoDataset.getAtividades());
         listaHistorico.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         listaHistorico.setLayoutManager(layoutManager);
         listaHistorico.setAdapter(historicoAdapter);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void BuscarHistorico(){
+    public void buscarHistorico() {
         prefs = HistoricoActivity.this.getSharedPreferences("sm-pref", Context.MODE_PRIVATE);
-        edit = prefs.edit();
 
-        String token = prefs.getString("token","");
-        String email = prefs.getString("email","");
+        String token = prefs.getString("token", "");
+        String email = prefs.getString("email", "");
         Long carteiraId = prefs.getLong("idCarteiraPessoal", 0L);
 
         LocalDate now = LocalDate.now();
@@ -89,7 +91,7 @@ public class HistoricoActivity extends AppCompatActivity {
         LocalDate end = now;
 
         Request request = new Request.Builder()
-                .url("https://smartcash-engine.herokuapp.com/engine/v1/atividade/"+carteiraId+"?start="+start.toString()+"&end="+end.toString()) //aq vou ter q substituir
+                .url("https://smartcash-engine.herokuapp.com/engine/v1/atividade/" + carteiraId + "?start=" + start.toString() + "&end=" + end.toString()) //aq vou ter q substituir
                 .get()
                 .addHeader("Content-Type", "application/json")
                 .addHeader("email", email)
@@ -103,8 +105,10 @@ public class HistoricoActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                edit.putString("listaDoHistorico", response.body().string());
-                edit.commit();
+                List<NotaDto> atividades = converterParaNotaDto(response.body().string());
+                runOnUiThread(() -> {
+                    historicoAdapter.updated(tipoCarteira, atividades);
+                });
             }
         });
     }

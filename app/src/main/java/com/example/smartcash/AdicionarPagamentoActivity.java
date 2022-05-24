@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 import com.example.smartcash.models.domain.Carteira;
 import com.example.smartcash.models.domain.Conta;
 import com.example.smartcash.models.domain.Tag;
+import com.example.smartcash.models.dtos.NotaDto;
 import com.example.smartcash.models.enums.AppConstants;
 import com.example.smartcash.models.enums.TipoCarteira;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,6 +28,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -53,7 +56,9 @@ public class AdicionarPagamentoActivity extends AppCompatActivity {
     Long carteiraId;
 
     TipoCarteira tipoCarteira;
+    NotaDto notaDto ;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,8 +80,6 @@ public class AdicionarPagamentoActivity extends AppCompatActivity {
 
         getCarteira();
         buttonPostPagamento.setOnClickListener(view -> postPagamento());
-
-
     }
 
     private void getCarteira() {
@@ -134,11 +137,18 @@ public class AdicionarPagamentoActivity extends AppCompatActivity {
         });
     }
 
-    public void AbrirPagamento() {
+    public void pagamento(NotaDto notaDto){
         Intent intent = new Intent(this, PagamentoActivity.class);
+        intent.putExtra("pagamento", notaDto);
+        intent.putExtra("tipoCarteira",tipoCarteira);
         startActivity(intent);
     }
 
+    public void AbrirPagamento(View view) {
+        pagamento(notaDto);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void postPagamento() {
         prefs = AdicionarPagamentoActivity.this.getSharedPreferences("sm-pref", Context.MODE_PRIVATE);
 
@@ -146,11 +156,11 @@ public class AdicionarPagamentoActivity extends AppCompatActivity {
         Double valor = Double.parseDouble(editTxtValor.getText().toString().replace(",","."));
         Boolean repeticao = Boolean.parseBoolean(editTxtRepeticao.getText().toString());
         String data = editTxtData.getText().toString();
-        Integer qtd_vezes = Integer.parseInt(editTxtVezes.getText().toString());
+        Integer qtd_vezes = !repeticao || editTxtVezes.getText().toString().isEmpty() ? 0 : Integer.parseInt(editTxtVezes.getText().toString());
         String tipo = "PAGAMENTO";
         Long conta = contaId;
         Long tag = tagId;
-        Long carteira = tagId;
+        Long carteira = carteiraId;
 
         OkHttpClient client = new OkHttpClient();
 
@@ -172,6 +182,12 @@ public class AdicionarPagamentoActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        notaDto = new NotaDto();
+        notaDto.setTitulo(titulo);
+        notaDto.setValor(valor);
+        String[] subdata = data.split("/");
+        notaDto.setData(LocalDate.of(Integer.parseInt(subdata[2]), Integer.parseInt(subdata[1]), Integer.parseInt(subdata[0])));
+
         RequestBody body = RequestBody.create(String.valueOf(jsonObject), mediaType);
         Request request = new Request.Builder()
                 .url(AppConstants.BASE_URL.getName().concat("/nota"))
@@ -190,7 +206,8 @@ public class AdicionarPagamentoActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
-                    AbrirPagamento();
+                    pagamento(notaDto);
+                    finish();
                 }
             }
         });

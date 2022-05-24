@@ -1,15 +1,9 @@
 package com.example.smartcash;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -17,12 +11,14 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.smartcash.models.domain.Carteira;
 import com.example.smartcash.models.domain.Conta;
 import com.example.smartcash.models.domain.Tag;
 import com.example.smartcash.models.enums.AppConstants;
 import com.example.smartcash.models.enums.TipoCarteira;
-import com.example.smartcash.models.enums.TipoConta;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.json.JSONException;
@@ -88,7 +84,7 @@ public class AdicionarSaldoActivity extends AppCompatActivity {
         prefs = AdicionarSaldoActivity.this.getSharedPreferences("sm-pref", Context.MODE_PRIVATE);
 
         Request request = new Request.Builder()
-                .url(AppConstants.BASE_URL.getName().concat("/carteira/busca?tipo="+tipoCarteira.name()))
+                .url(AppConstants.BASE_URL.getName().concat("/carteira/busca?tipo=" + tipoCarteira.name()))
                 .get()
                 .addHeader("email", prefs.getString("email", ""))
                 .addHeader("Authorization", "Bearer " + prefs.getString("token", ""))
@@ -118,7 +114,7 @@ public class AdicionarSaldoActivity extends AppCompatActivity {
                     adapterContas = new ArrayAdapter<String>(AdicionarSaldoActivity.this, android.R.layout.simple_spinner_item, contaNomes);
                     adapterContas.setDropDownViewResource(android.R.layout.simple_spinner_item);
                     spinnerContaSaldo.setAdapter(adapterContas);
-                    for(Conta conta : contas) {
+                    for (Conta conta : contas) {
                         if (conta.getNome().equals(spinnerContaSaldo.getSelectedItem().toString())) {
                             contaId = conta.getId();
                         }
@@ -127,7 +123,7 @@ public class AdicionarSaldoActivity extends AppCompatActivity {
                     adapterTags = new ArrayAdapter<String>(AdicionarSaldoActivity.this, android.R.layout.simple_spinner_item, tagsNomes);
                     adapterTags.setDropDownViewResource(android.R.layout.simple_spinner_item);
                     spinnerTagSaldo.setAdapter(adapterTags);
-                    for(Tag tag : tags) {
+                    for (Tag tag : tags) {
                         if (tag.getTitulo().equals(spinnerTagSaldo.getSelectedItem().toString())) {
                             tagId = tag.getId();
                         }
@@ -137,23 +133,18 @@ public class AdicionarSaldoActivity extends AppCompatActivity {
         });
     }
 
-    public void AbrirSaldo() {
-        Intent intent = new Intent(this, SaldoActivity.class);
-        startActivity(intent);
-    }
-
     private void postSaldo() {
         prefs = AdicionarSaldoActivity.this.getSharedPreferences("sm-pref", Context.MODE_PRIVATE);
 
         String titulo = editTxtTitulo.getText().toString();
-        Double valor = Double.parseDouble(editTxtValor.getText().toString().replace(",","."));
+        Double valor = Double.parseDouble(editTxtValor.getText().toString().replace(",", "."));
         Boolean repeticao = Boolean.parseBoolean(editTxtRepeticao.getText().toString());
         String data = editTxtData.getText().toString();
-        Integer qtd_vezes = Integer.parseInt(editTxtVezes.getText().toString());
+        Integer qtd_vezes = !repeticao || editTxtVezes.getText().toString().isEmpty() ? 0 : Integer.parseInt(editTxtVezes.getText().toString());
         String tipo = "RECEBIMENTO";
         Long conta = contaId;
         Long tag = tagId;
-        Long carteira = tagId;
+        Long carteira = carteiraId;
 
         OkHttpClient client = new OkHttpClient();
 
@@ -193,7 +184,7 @@ public class AdicionarSaldoActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
-                    AbrirSaldo();
+                    finish();
                 }
             }
         });

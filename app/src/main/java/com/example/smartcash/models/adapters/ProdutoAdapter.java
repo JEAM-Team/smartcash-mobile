@@ -7,7 +7,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartcash.R;
+import com.example.smartcash.dataset.ProdutoDataset;
+import com.example.smartcash.dataset.SaldoComercialDataset;
+import com.example.smartcash.dataset.SaldoPessoalDataset;
+import com.example.smartcash.models.dtos.NotaDto;
 import com.example.smartcash.models.dtos.ProdutoDto;
+import com.example.smartcash.models.enums.TipoCarteira;
 import com.example.smartcash.models.holders.CardProdutoHolder;
 
 import java.util.List;
@@ -29,6 +34,12 @@ public class ProdutoAdapter extends RecyclerView.Adapter<CardProdutoHolder> {
         holder.txtNomeProduto.setText(produtos.get(position).getNome());
         holder.txtCodigoProduto.setText(produtos.get(position).getCodigo());
         holder.txtValorProduto.setText(produtos.get(position).getValor().toString());
+    }
+
+    public void updated(List<ProdutoDto> n) {
+        int initial = ProdutoDataset.getProdutos().size();
+        ProdutoDataset.updateAll(n);
+        notifyItemRangeInserted(initial, produtos.size());
     }
 
     @Override
