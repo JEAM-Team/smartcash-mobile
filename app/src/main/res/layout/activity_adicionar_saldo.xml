@@ -109,7 +109,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtTituloSaldo" />
 
-    <EditText
+    <com.santalu.maskara.widget.MaskEditText
         android:id="@+id/txtDataVencimentoSaldo"
         android:layout_width="163dp"
         android:layout_height="48dp"
@@ -118,8 +118,11 @@
         android:ems="10"
         android:hint="  /  /    "
         android:inputType="date"
+        app:mask="##/##/####"
+        app:maskCharacter="#"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switchRepetirSaldo" />
+        app:layout_constraintTop_toBottomOf="@+id/switchRepetirSaldo"
+        app:maskStyle="normal" />
 
     <EditText
         android:id="@+id/txtQtdRepeticoesSaldo"
