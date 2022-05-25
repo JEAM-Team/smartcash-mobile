@@ -6,20 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".AdicionarPagamentoActivity">
 
-    <Button
-        android:id="@+id/btnSair"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="119dp"
-        android:layout_height="40dp"
-        android:backgroundTint="#FFFFFF"
-        android:text="Sair"
-        android:textColor="#000000"
-        app:icon="?attr/actionModeCloseDrawable"
-        app:iconTint="#000000"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="#FFFFFF" />
-
     <View
         android:id="@+id/divider"
         android:layout_width="409dp"
@@ -29,7 +15,7 @@
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSair" />
+        tools:layout_editor_absoluteY="40dp" />
 
     <TextView
         android:id="@+id/txtAdicionarPagamento"
