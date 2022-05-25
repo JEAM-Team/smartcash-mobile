@@ -152,6 +152,12 @@ public class HomeSecundariaActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void btnAbrirHistoricoClick(View view){
+        Intent intent = new Intent(this, HistoricoActivity.class);
+        intent.putExtra("tipoCarteira", TipoCarteira.PESSOAL);
+        startActivity(intent);
+    }
+
 
 
 
