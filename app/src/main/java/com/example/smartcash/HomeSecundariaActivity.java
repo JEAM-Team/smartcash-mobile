@@ -152,11 +152,19 @@ public class HomeSecundariaActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void btnAbrirHistoricoClick(View view){
+        Intent intent = new Intent(this, HistoricoActivity.class);
+        intent.putExtra("tipoCarteira", TipoCarteira.PESSOAL);
+        startActivity(intent);
+    }
 
 
 
-    public void Sair() {
-        finish();
+
+    public void SairDaqui(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);;
     }
 
 }
