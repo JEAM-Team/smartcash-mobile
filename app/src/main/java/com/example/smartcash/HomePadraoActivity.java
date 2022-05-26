@@ -133,7 +133,9 @@ public class HomePadraoActivity extends AppCompatActivity {
     }
 
 
-    public void Sair() {
-        finish();
+    public void Sair(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 }
