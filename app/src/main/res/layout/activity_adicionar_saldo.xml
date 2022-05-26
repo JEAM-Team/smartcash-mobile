@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="46dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="50dp"
         android:text="Adicionar Saldo"
         android:textColor="#8BC34A"
@@ -42,7 +42,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnAdicionarSaldo"
@@ -184,7 +184,7 @@
         android:contentDescription="BotaoAdicionar"
         android:textColor="#878787"
         app:icon="@android:drawable/ic_menu_add"
-        app:iconTint="#000000"
+        app:iconTint="?android:textColorPrimary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtDataVencimentoSaldo" />
 
@@ -197,7 +197,7 @@
         android:contentDescription="BotaoAdicionar"
         android:textColor="#878787"
         app:icon="@android:drawable/ic_menu_add"
-        app:iconTint="#000000"
+        app:iconTint="?android:textColorPrimary"
         app:layout_constraintEnd_toStartOf="@+id/spinnerContaSaldo"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
