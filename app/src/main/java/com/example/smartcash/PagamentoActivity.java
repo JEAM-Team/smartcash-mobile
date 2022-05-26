@@ -54,6 +54,7 @@ public class PagamentoActivity extends AppCompatActivity {
     private TipoCarteira tipoCarteira;
     private NotaDto addNota;
 
+
     @Override
     protected void onResume() {
         super.onResume();

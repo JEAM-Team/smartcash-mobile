@@ -17,7 +17,7 @@
             android:exported="false" />
         <activity
             android:name=".ModalContaActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".ModalProdutoActivity"
             android:exported="false" />

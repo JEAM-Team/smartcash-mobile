@@ -1,20 +1,18 @@
 package com.example.smartcash;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartcash.models.domain.Carteira;
 import com.example.smartcash.models.domain.Conta;
@@ -56,7 +54,7 @@ public class AdicionarPagamentoActivity extends AppCompatActivity {
     Long carteiraId;
 
     TipoCarteira tipoCarteira;
-    NotaDto notaDto ;
+    NotaDto notaDto;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -88,7 +86,7 @@ public class AdicionarPagamentoActivity extends AppCompatActivity {
         prefs = AdicionarPagamentoActivity.this.getSharedPreferences("sm-pref", Context.MODE_PRIVATE);
 
         Request request = new Request.Builder()
-                .url(AppConstants.BASE_URL.getName().concat("/carteira/busca?tipo="+tipoCarteira.name()))
+                .url(AppConstants.BASE_URL.getName().concat("/carteira/busca?tipo=" + tipoCarteira.name()))
                 .get()
                 .addHeader("email", prefs.getString("email", ""))
                 .addHeader("Authorization", "Bearer " + prefs.getString("token", ""))
@@ -118,7 +116,7 @@ public class AdicionarPagamentoActivity extends AppCompatActivity {
                     adapterContas = new ArrayAdapter<String>(AdicionarPagamentoActivity.this, android.R.layout.simple_spinner_item, contaNomes);
                     adapterContas.setDropDownViewResource(android.R.layout.simple_spinner_item);
                     spinnerContaPagamento.setAdapter(adapterContas);
-                    for(Conta conta : contas) {
+                    for (Conta conta : contas) {
                         if (conta.getNome().equals(spinnerContaPagamento.getSelectedItem().toString())) {
                             contaId = conta.getId();
                         }
@@ -127,7 +125,7 @@ public class AdicionarPagamentoActivity extends AppCompatActivity {
                     adapterTags = new ArrayAdapter<String>(AdicionarPagamentoActivity.this, android.R.layout.simple_spinner_item, tagsNomes);
                     adapterTags.setDropDownViewResource(android.R.layout.simple_spinner_item);
                     spinnerTagPagamento.setAdapter(adapterTags);
-                    for(Tag tag : tags) {
+                    for (Tag tag : tags) {
                         if (tag.getTitulo().equals(spinnerTagPagamento.getSelectedItem().toString())) {
                             tagId = tag.getId();
                         }
@@ -137,23 +135,13 @@ public class AdicionarPagamentoActivity extends AppCompatActivity {
         });
     }
 
-    public void pagamento(NotaDto notaDto){
-        Intent intent = new Intent(this, PagamentoActivity.class);
-        intent.putExtra("pagamento", notaDto);
-        intent.putExtra("tipoCarteira",tipoCarteira);
-        startActivity(intent);
-    }
-
-    public void AbrirPagamento(View view) {
-        pagamento(notaDto);
-    }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void postPagamento() {
         prefs = AdicionarPagamentoActivity.this.getSharedPreferences("sm-pref", Context.MODE_PRIVATE);
 
         String titulo = editTxtTitulo.getText().toString();
-        Double valor = Double.parseDouble(editTxtValor.getText().toString().replace(",","."));
+        Double valor = Double.parseDouble(editTxtValor.getText().toString().replace(",", "."));
         Boolean repeticao = Boolean.parseBoolean(editTxtRepeticao.getText().toString());
         String data = editTxtData.getText().toString();
         Integer qtd_vezes = !repeticao || editTxtVezes.getText().toString().isEmpty() ? 0 : Integer.parseInt(editTxtVezes.getText().toString());
@@ -206,7 +194,6 @@ public class AdicionarPagamentoActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
-                    pagamento(notaDto);
                     finish();
                 }
             }
