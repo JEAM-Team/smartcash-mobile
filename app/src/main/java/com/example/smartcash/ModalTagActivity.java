@@ -39,7 +39,7 @@ public class ModalTagActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modal_tag);
-        txtNome2 = findViewById(R.id.txtNome2);
+        txtNome2 = findViewById(R.id.editTxtName3);
         btnAdicionarConta2 = findViewById(R.id.btnAdicionarConta2);
     }
 
@@ -104,9 +104,7 @@ public class ModalTagActivity extends AppCompatActivity {
                         if (response.isSuccessful()) {
                             ModalTagActivity.this.runOnUiThread(() -> Toast.makeText(ModalTagActivity.this,
                                     "Tag enviada com Sucesso!", Toast.LENGTH_LONG).show());
-
-                            //TODO fecher modal
-
+                            finish();
                         } else if (response.code() == 403) {
                             ModalTagActivity.this.runOnUiThread(() -> Toast.makeText(ModalTagActivity.this,
                                     "Token expirado. Por favor tente novamente.", Toast.LENGTH_LONG).show());
