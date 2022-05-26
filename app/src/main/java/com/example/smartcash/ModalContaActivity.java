@@ -118,8 +118,7 @@ public class ModalContaActivity extends AppCompatActivity {
                         if (response.isSuccessful()) {
                             ModalContaActivity.this.runOnUiThread(() -> Toast.makeText(ModalContaActivity.this,
                                     "Conta enviada com Sucesso!", Toast.LENGTH_LONG).show());
-
-                            //TODO fecher modal
+                            finish();
 
                         } else if (response.code() == 403) {
                             ModalContaActivity.this.runOnUiThread(() -> Toast.makeText(ModalContaActivity.this,

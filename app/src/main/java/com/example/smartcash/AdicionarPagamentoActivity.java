@@ -212,4 +212,16 @@ public class AdicionarPagamentoActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void btnAbrirContaClick(View view){
+        Intent intent = new Intent(this, ModalContaActivity.class);
+        intent.putExtra("tipoCarteira", tipoCarteira);
+        startActivity(intent);
+    }
+
+    public void btnAbrirTagClick(View view){
+        Intent intent = new Intent(this, ModalTagActivity.class);
+        intent.putExtra("tipoCarteira", tipoCarteira);
+        startActivity(intent);
+    }
 }
