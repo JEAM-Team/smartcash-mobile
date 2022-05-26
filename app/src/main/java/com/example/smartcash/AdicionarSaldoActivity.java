@@ -117,6 +117,7 @@ public class AdicionarSaldoActivity extends AppCompatActivity {
                 runOnUiThread(() -> {
                     adapterContas = new ArrayAdapter<String>(AdicionarSaldoActivity.this, android.R.layout.simple_spinner_item, contaNomes);
                     adapterContas.setDropDownViewResource(android.R.layout.simple_spinner_item);
+                    adapterContas.notifyDataSetChanged();
                     spinnerContaSaldo.setAdapter(adapterContas);
                     for (Conta conta : contas) {
                         if (conta.getNome().equals(spinnerContaSaldo.getSelectedItem().toString())) {
@@ -192,6 +193,12 @@ public class AdicionarSaldoActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getCarteira();
     }
 
     public void btnAbrirContaClick(View view){
