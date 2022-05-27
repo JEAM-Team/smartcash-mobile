@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/txtUsuario"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:textAlignment="textEnd"
+            app:layout_constraintBottom_toTopOf="@+id/divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnSair"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="119dp"
+            android:layout_height="40dp"
+            android:backgroundTint="#FFFFFF"
+            android:onClick="Sair"
+            android:text="Sair"
+            android:textColor="?android:textColorPrimary"
+            app:icon="?attr/actionModeCloseDrawable"
+            app:iconTint="?android:textColorPrimary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="#FFFFFF" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="409dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnSair" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/header">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".HomePadraoActivity">
+
+                <TextView
+                    android:id="@+id/txtCarteiraPessoal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="87dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="87dp"
+                    android:text="Carteira Pessoal"
+                    android:textColor="#8BC34A"
+                    android:textSize="32dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/btnHistoricoPessoal"
+                    android:layout_width="194dp"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="50dp"
+                    android:onClick="btnAbrirHistoricoClick"
+                    android:text="Historico"
+                    app:layout_constraintEnd_toEndOf="@+id/boxPessoal"
+                    app:layout_constraintStart_toStartOf="@+id/boxPessoal"
+                    app:layout_constraintTop_toBottomOf="@+id/barrinhaEsquerda" />
+
+                <Button
+                    android:id="@+id/btnPagamentosPessoal"
+                    android:layout_width="140dp"
+                    android:layout_height="59dp"
+                    android:layout_marginTop="15dp"
+                    android:onClick="btnAbrirPagamentoClick"
+                    android:text="Pagamento"
+                    app:layout_constraintEnd_toEndOf="@+id/boxPessoal"
+                    app:layout_constraintTop_toBottomOf="@+id/boxPessoal" />
+
+                <Button
+                    android:id="@+id/btnSaldoPessoal"
+                    android:layout_width="140dp"
+                    android:layout_height="59dp"
+                    android:layout_marginTop="15dp"
+                    android:onClick="btnAbrirSaldoClick"
+                    android:text="Saldo"
+                    app:layout_constraintStart_toStartOf="@+id/boxPessoal"
+                    app:layout_constraintTop_toBottomOf="@+id/boxPessoal" />
+
+                <TextView
+                    android:id="@+id/txtPagamentoCarteiraPessoal"
+                    android:layout_width="140dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="R$0"
+                    android:textAlignment="center"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/boxPessoal"
+                    app:layout_constraintTop_toTopOf="@+id/boxPessoal" />
+
+                <TextView
+                    android:id="@+id/txtSaldoCarteiraPessoal"
+                    android:layout_width="140dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="30dp"
+                    android:text="R$0"
+                    android:textAlignment="center"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/boxPessoal"
+                    app:layout_constraintTop_toTopOf="@+id/boxPessoal" />
+
+                <TextView
+                    android:id="@+id/boxPessoal"
+                    android:layout_width="353dp"
+                    android:layout_height="188dp"
+                    android:layout_marginStart="56dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="56dp"
+                    android:background="@drawable/box"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtCarteiraPessoal" />
+
+                <TextView
+                    android:id="@+id/barrinhaEsquerda"
+                    android:layout_width="140dp"
+                    android:layout_height="2dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/box"
+                    app:layout_constraintStart_toStartOf="@+id/boxPessoal"
+                    app:layout_constraintTop_toBottomOf="@+id/txtSaldoCarteiraPessoal" />
+
+                <TextView
+                    android:id="@+id/barrinhaDireita"
+                    android:layout_width="140dp"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/box"
+                    app:layout_constraintEnd_toEndOf="@+id/boxPessoal"
+                    app:layout_constraintTop_toBottomOf="@+id/txtPagamentoCarteiraPessoal" />
+
+                <TextView
+                    android:id="@+id/txtCarteiraProfissional"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="56dp"
+                    android:layout_marginTop="36dp"
+                    android:layout_marginEnd="56dp"
+                    android:text="Carteira Comercial"
+                    android:textColor="#8BC34A"
+                    android:textSize="32dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnSaldoPessoal" />
+
+                <Button
+                    android:id="@+id/btnPagamentosProfissional"
+                    android:layout_width="140dp"
+                    android:layout_height="59dp"
+                    android:layout_marginTop="15dp"
+                    android:onClick="btnAbrirPagamentoComercial"
+                    android:text="Pagamento"
+                    app:layout_constraintEnd_toEndOf="@+id/btnPagamentosPessoal"
+                    app:layout_constraintTop_toBottomOf="@+id/boxProfissional" />
+
+                <Button
+                    android:id="@+id/btnSaldoProfissional"
+                    android:layout_width="140dp"
+                    android:layout_height="59dp"
+                    android:layout_marginTop="15dp"
+                    android:onClick="btnAbrirSaldoComercial"
+                    android:text="Saldo"
+                    app:layout_constraintStart_toStartOf="@+id/btnSaldoPessoal"
+                    app:layout_constraintTop_toBottomOf="@+id/boxProfissional" />
+
+                <TextView
+                    android:id="@+id/txtSaldoProfissional"
+                    android:layout_width="140dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="30dp"
+                    android:text="R$0"
+                    android:textAlignment="center"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/boxProfissional"
+                    app:layout_constraintTop_toTopOf="@+id/boxProfissional" />
+
+                <TextView
+                    android:id="@+id/txtPagamentoProfissional"
+                    android:layout_width="140dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="R$0"
+                    android:textAlignment="center"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/boxProfissional"
+                    app:layout_constraintTop_toTopOf="@+id/boxProfissional" />
+
+                <TextView
+                    android:id="@+id/barrinhaEsquerda2"
+                    android:layout_width="140dp"
+                    android:layout_height="2dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/box"
+                    app:layout_constraintStart_toStartOf="@+id/boxProfissional"
+                    app:layout_constraintTop_toBottomOf="@+id/txtSaldoProfissional" />
+
+                <TextView
+                    android:id="@+id/barrinhaDireita2"
+                    android:layout_width="140dp"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/box"
+                    app:layout_constraintEnd_toEndOf="@+id/boxProfissional"
+                    app:layout_constraintTop_toBottomOf="@+id/txtPagamentoProfissional" />
+
+                <TextView
+                    android:id="@+id/boxProfissional"
+                    android:layout_width="353dp"
+                    android:layout_height="193dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/box"
+                    app:layout_constraintEnd_toEndOf="@+id/boxPessoal"
+                    app:layout_constraintStart_toStartOf="@+id/boxPessoal"
+                    app:layout_constraintTop_toBottomOf="@+id/txtCarteiraProfissional" />
+
+                <Button
+                    android:id="@+id/btnHistoricoProfissional"
+                    android:layout_width="194dp"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="50dp"
+                    android:onClick="btnAbrirHistoricoComercial"
+                    android:text="Historico"
+                    app:layout_constraintEnd_toEndOf="@+id/boxProfissional"
+                    app:layout_constraintStart_toStartOf="@+id/boxProfissional"
+                    app:layout_constraintTop_toBottomOf="@+id/barrinhaEsquerda2" />
+
+                <Button
+                    android:id="@+id/btnAdicionarProduto"
+                    android:layout_width="195dp"
+                    android:layout_height="59dp"
+                    android:layout_marginStart="108dp"
+                    android:layout_marginEnd="108dp"
+                    android:onClick="btnAbrirProdutoClick"
+                    android:text="Produtos"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnSaldoProfissional" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
+
+
+<!--<ScrollView-->
+<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:layout_width="match_parent">-->
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        tools:context=".HomePadraoActivity">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/txtUsuario"-->
+<!--            android:layout_width="220dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginEnd="20dp"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:textAlignment="textEnd"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/divider"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btnSair"-->
+<!--            android:layout_width="119dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:backgroundTint="#FFFFFF"-->
+<!--            android:text="Sair"-->
+<!--            android:textColor="#000000"-->
+<!--            app:icon="?attr/actionModeCloseDrawable"-->
+<!--            app:iconTint="#000000"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:strokeColor="#FFFFFF"-->
+<!--            style="?android:attr/borderlessButtonStyle" />-->
+
+<!--        <View-->
+<!--            android:id="@+id/divider"-->
+<!--            android:layout_width="409dp"-->
+<!--            android:layout_height="1dp"-->
+<!--            android:layout_marginStart="1dp"-->
+<!--            android:layout_marginEnd="1dp"-->
+<!--            android:background="?android:attr/listDivider"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/btnSair" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/txtCarteiraPessoal"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="87dp"-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            android:layout_marginEnd="87dp"-->
+<!--            android:text="Carteira Pessoal"-->
+<!--            android:textColor="#8BC34A"-->
+<!--            android:textSize="32dp"-->
+<!--            android:textStyle="bold"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.0"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btnHistoricoPessoal"-->
+<!--            android:layout_width="194dp"-->
+<!--            android:layout_height="56dp"-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            android:onClick="btnAbrirHistoricoClick"-->
+<!--            android:text="Historico"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/boxPessoal"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/boxPessoal"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/barrinhaEsquerda" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btnPagamentosPessoal"-->
+<!--            android:layout_width="140dp"-->
+<!--            android:layout_height="59dp"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:onClick="btnAbrirPagamentoClick"-->
+<!--            android:text="Pagamento"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/boxPessoal"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/boxPessoal" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btnSaldoPessoal"-->
+<!--            android:layout_width="140dp"-->
+<!--            android:layout_height="59dp"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:onClick="btnAbrirSaldoClick"-->
+<!--            android:text="Saldo"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/boxPessoal"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/boxPessoal" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/txtPagamentoCarteiraPessoal"-->
+<!--            android:layout_width="140dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_marginTop="30dp"-->
+<!--            android:layout_marginEnd="20dp"-->
+<!--            android:text="R$0"-->
+<!--            android:textAlignment="viewStart"-->
+<!--            android:textSize="22sp"-->
+<!--            android:textStyle="bold"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/boxPessoal"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/boxPessoal" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/txtSaldoCarteiraPessoal"-->
+<!--            android:layout_width="140dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:layout_marginTop="30dp"-->
+<!--            android:text="R$0"-->
+<!--            android:textAlignment="viewStart"-->
+<!--            android:textSize="22sp"-->
+<!--            android:textStyle="bold"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/boxPessoal"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/boxPessoal" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/boxPessoal"-->
+<!--            android:layout_width="353dp"-->
+<!--            android:layout_height="188dp"-->
+<!--            android:layout_marginStart="56dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginEnd="56dp"-->
+<!--            android:background="@drawable/box"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/txtCarteiraPessoal" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/barrinhaEsquerda"-->
+<!--            android:layout_width="140dp"-->
+<!--            android:layout_height="2dp"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:layout_marginTop="1dp"-->
+<!--            android:background="@drawable/box"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/boxPessoal"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/txtSaldoCarteiraPessoal" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/barrinhaDireita"-->
+<!--            android:layout_width="140dp"-->
+<!--            android:layout_height="2dp"-->
+<!--            android:layout_marginTop="1dp"-->
+<!--            android:layout_marginEnd="20dp"-->
+<!--            android:background="@drawable/box"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/boxPessoal"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/txtPagamentoCarteiraPessoal" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/txtCarteiraProfissional"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="56dp"-->
+<!--            android:layout_marginTop="36dp"-->
+<!--            android:layout_marginEnd="56dp"-->
+<!--            android:text="Carteira Comercial"-->
+<!--            android:textColor="#8BC34A"-->
+<!--            android:textSize="32dp"-->
+<!--            android:textStyle="bold"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/btnSaldoPessoal" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btnPagamentosProfissional"-->
+<!--            android:layout_width="140dp"-->
+<!--            android:layout_height="59dp"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:onClick="btnAbrirPagamentoComercial"-->
+<!--            android:text="Pagamento"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/btnPagamentosPessoal"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/boxProfissional" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btnSaldoProfissional"-->
+<!--            android:layout_width="140dp"-->
+<!--            android:layout_height="59dp"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:onClick="btnAbrirSaldoComercial"-->
+<!--            android:text="Saldo"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/btnSaldoPessoal"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/boxProfissional" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/txtSaldoProfissional"-->
+<!--            android:layout_width="140dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:layout_marginTop="30dp"-->
+<!--            android:text="R$0"-->
+<!--            android:textAlignment="viewStart"-->
+<!--            android:textSize="22sp"-->
+<!--            android:textStyle="bold"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/boxProfissional"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/boxProfissional" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/txtPagamentoProfissional"-->
+<!--            android:layout_width="140dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_marginTop="30dp"-->
+<!--            android:layout_marginEnd="20dp"-->
+<!--            android:text="R$0"-->
+<!--            android:textAlignment="viewStart"-->
+<!--            android:textSize="22sp"-->
+<!--            android:textStyle="bold"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/boxProfissional"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/boxProfissional" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/barrinhaEsquerda2"-->
+<!--            android:layout_width="140dp"-->
+<!--            android:layout_height="2dp"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:layout_marginTop="1dp"-->
+<!--            android:background="@drawable/box"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/boxProfissional"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/txtSaldoProfissional" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/barrinhaDireita2"-->
+<!--            android:layout_width="140dp"-->
+<!--            android:layout_height="2dp"-->
+<!--            android:layout_marginTop="1dp"-->
+<!--            android:layout_marginEnd="20dp"-->
+<!--            android:background="@drawable/box"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/boxProfissional"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/txtPagamentoProfissional" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/boxProfissional"-->
+<!--            android:layout_width="353dp"-->
+<!--            android:layout_height="193dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:background="@drawable/box"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/boxPessoal"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/boxPessoal"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/txtCarteiraProfissional" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btnHistoricoProfissional"-->
+<!--            android:layout_width="194dp"-->
+<!--            android:layout_height="56dp"-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            android:onClick="btnAbrirHistoricoComercial"-->
+<!--            android:text="Historico"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/boxProfissional"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/boxProfissional"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/barrinhaEsquerda2" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btnAdicionarProduto"-->
+<!--            android:layout_width="195dp"-->
+<!--            android:layout_height="59dp"-->
+<!--            android:layout_marginStart="108dp"-->
+<!--            android:layout_marginEnd="108dp"-->
+<!--            android:onClick="btnAbrirProdutoClick"-->
+<!--            android:text="Produtos"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/btnSaldoProfissional" />-->
+
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--</ScrollView>-->
+
+

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/modal_screen"
+    android:paddingBottom="32dp"
+    tools:context=".ModalProdutoActivity">
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/txtConta"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="#F8F8F8"
+            android:text="Adicionar Conta"
+            android:textAlignment="center"
+            android:textColor="#8BC34A"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/header">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".ModalContaActivity">
+
+                <EditText
+                    android:id="@+id/txtNome3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginEnd="10dp"
+                    android:drawableEnd="@drawable/ic_create"
+                    android:hint="Nome"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/btnCancelar3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="15dp"
+                    android:backgroundTint="@color/white"
+                    android:fadingEdge="horizontal"
+                    android:onClick="btnSair"
+                    android:requiresFadingEdge="vertical"
+                    android:text="Cancelar"
+                    android:textColor="#000000"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnAdicionarConta3" />
+
+                <Button
+                    android:id="@+id/btnAdicionarConta3"
+                    android:layout_width="240dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="200dp"
+                    android:layout_marginEnd="5dp"
+                    android:onClick="btnEnvioconta"
+                    android:text="Adiciona conta"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editTxtValor3" />
+
+                <Spinner
+                    android:id="@+id/dropTipoConta"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="160dp"
+                    android:layout_marginEnd="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/editTxtValor3"
+                    app:layout_constraintTop_toBottomOf="@+id/txtNome3" />
+
+                <EditText
+                    android:id="@+id/editTxtValor3"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="150dp"
+                    android:layout_marginEnd="10dp"
+                    android:drawableEnd="@drawable/ic_attach_money"
+                    android:hint="Valor"
+                    app:layout_constraintEnd_toStartOf="@+id/dropTipoConta"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtNome3" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
+
+
+    <!--<ScrollView-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/modal_screen"
+    android:paddingBottom="32dp"
+    tools:context=".ModalProdutoActivity">
+
+   <TextView
+   android:id="@+id/txtConta"
+   android:layout_width="match_parent"
+   android:layout_height="45dp"
+   android:background="#F8F8F8"
+   android:text="Adicionar Conta"
+   android:textAlignment="center"
+   android:textColor="#8BC34A"
+   android:textSize="20sp"
+   android:textStyle="bold"
+   app:layout_constraintEnd_toEndOf="parent"
+   app:layout_constraintStart_toStartOf="parent"
+   app:layout_constraintTop_toTopOf="parent" />
+
+   <EditText
+   android:id="@+id/txtNome3"
+   android:layout_width="match_parent"
+   android:layout_height="wrap_content"
+   android:layout_marginStart="10dp"
+   android:layout_marginTop="100dp"
+   android:layout_marginEnd="10dp"
+   android:drawableEnd="@drawable/ic_create"
+   android:hint="Nome"
+   app:layout_constraintEnd_toEndOf="parent"
+   app:layout_constraintHorizontal_bias="0.0"
+   app:layout_constraintStart_toStartOf="parent"
+   app:layout_constraintTop_toBottomOf="@+id/txtConta" />
+
+   <Button
+   android:id="@+id/btnCancelar3"
+   android:layout_width="wrap_content"
+   android:layout_height="60dp"
+   android:layout_marginStart="15dp"
+   android:layout_marginTop="20dp"
+   android:layout_marginEnd="15dp"
+   android:backgroundTint="@color/white"
+   android:fadingEdge="horizontal"
+   android:onClick="btnSair"
+   android:requiresFadingEdge="vertical"
+   android:text="Cancelar"
+   android:textColor="#000000"
+   app:layout_constraintEnd_toEndOf="parent"
+   app:layout_constraintStart_toStartOf="parent"
+   app:layout_constraintTop_toBottomOf="@+id/btnAdicionarConta3" />
+
+   <Button
+   android:id="@+id/btnAdicionarConta3"
+   android:layout_width="240dp"
+   android:layout_height="60dp"
+   android:layout_marginStart="5dp"
+   android:layout_marginTop="200dp"
+   android:layout_marginEnd="5dp"
+   android:onClick="btnEnvioconta"
+   android:text="Adiciona conta"
+   app:layout_constraintEnd_toEndOf="parent"
+   app:layout_constraintStart_toStartOf="parent"
+   app:layout_constraintTop_toBottomOf="@+id/editTxtValor3" />
+
+   <Spinner
+   android:id="@+id/dropTipoConta"
+   android:layout_width="220dp"
+   android:layout_height="wrap_content"
+   android:layout_marginStart="10dp"
+   android:layout_marginTop="160dp"
+   android:layout_marginEnd="10dp"
+   app:layout_constraintEnd_toEndOf="parent"
+   app:layout_constraintHorizontal_bias="0.0"
+   app:layout_constraintStart_toEndOf="@+id/editTxtValor3"
+   app:layout_constraintTop_toBottomOf="@+id/txtNome3" />
+
+   <EditText
+   android:id="@+id/editTxtValor3"
+   android:layout_width="150dp"
+   android:layout_height="wrap_content"
+   android:layout_marginStart="10dp"
+   android:layout_marginTop="150dp"
+   android:layout_marginEnd="10dp"
+   android:drawableEnd="@drawable/ic_attach_money"
+   android:hint="Valor"
+   app:layout_constraintEnd_toStartOf="@+id/dropTipoConta"
+   app:layout_constraintStart_toStartOf="parent"
+   app:layout_constraintTop_toBottomOf="@+id/txtNome3" />
+
+   </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+    <!--</ScrollView>-->

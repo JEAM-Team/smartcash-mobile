@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdicionarPagamentoActivity">
+
+    <TextView
+        android:id="@+id/txtAdicionarPagamento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="50dp"
+        android:text="Adicionar Pagamento"
+        android:textColor="#8BC34A"
+        android:textSize="32dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/txtTituloPagamento"
+        android:layout_width="375dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="15dp"
+        android:ems="10"
+        android:hint="Titulo"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtAdicionarPagamento" />
+
+    <EditText
+        android:id="@+id/txtValorPagamento"
+        android:layout_width="163dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:hint="Valor"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTituloPagamento" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="1dp"
+        android:text="Contas"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerContaPagamento"
+        app:layout_constraintStart_toStartOf="@+id/btnAbrirModalConta"
+        app:layout_constraintTop_toBottomOf="@+id/txtTituloPagamento" />
+
+    <Spinner
+        android:id="@+id/spinnerContaPagamento"
+        android:layout_width="163dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="15dp"
+        android:contentDescription="Selecione uma Conta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTituloPagamento" />
+
+    <Switch
+        android:id="@+id/switchRepetir"
+        android:layout_width="378dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="15dp"
+        android:text="Repetir?"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerContaPagamento" />
+
+    <com.santalu.maskara.widget.MaskEditText
+        android:id="@+id/txtDataVencimentoPagamento"
+        android:layout_width="163dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="50dp"
+        android:ems="10"
+        android:hint="  /  /   "
+        android:inputType="date"
+        app:mask="##/##/####"
+        app:maskCharacter="#"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switchRepetir"
+        app:maskStyle="normal" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="31dp"
+        android:text="Data de Vencimento"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintStart_toStartOf="@+id/txtDataVencimentoPagamento"
+        app:layout_constraintTop_toBottomOf="@+id/switchRepetir" />
+
+    <EditText
+        android:id="@+id/txtQtdRepeticoesPagamento"
+        android:layout_width="170dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="15dp"
+        android:ems="10"
+        android:hint="0"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switchRepetir" />
+
+    <Spinner
+        android:id="@+id/spinnerTagPagamento"
+        android:layout_width="353dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="15dp"
+        android:contentDescription="Nome da Tag"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtQtdRepeticoesPagamento" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tag"
+        app:layout_constraintBottom_toTopOf="@+id/btnAbrirModalTag"
+        app:layout_constraintEnd_toEndOf="@+id/btnAbrirModalTag" />
+
+    <Button
+        android:id="@+id/btnAdicionarPagamento"
+        android:layout_width="374dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="15dp"
+        android:onClick="AbrirPagamento"
+        android:text="Adicionar Pagamento"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerTagPagamento" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quantidade de Repetições"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintBottom_toTopOf="@+id/txtQtdRepeticoesPagamento"
+        app:layout_constraintStart_toStartOf="@+id/txtQtdRepeticoesPagamento" />
+
+    <Button
+        android:id="@+id/btnAbrirModalTag"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="45dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="7dp"
+        android:contentDescription="BotaoAdicionar"
+        android:onClick="btnAbrirTagClick"
+        android:textColor="#878787"
+        app:icon="@android:drawable/ic_menu_add"
+        app:iconTint="?android:textColorPrimary"
+        app:layout_constraintEnd_toStartOf="@+id/spinnerTagPagamento"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDataVencimentoPagamento" />
+
+    <Button
+        android:id="@+id/btnAbrirModalConta"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="48dp"
+        android:layout_height="50dp"
+        android:contentDescription="BotaoAdicionar"
+        android:onClick="btnAbrirContaClick"
+        android:textColor="#878787"
+        app:icon="@android:drawable/ic_menu_add"
+        app:iconTint="?android:textColorPrimary"
+        app:layout_constraintEnd_toStartOf="@+id/spinnerContaPagamento"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
