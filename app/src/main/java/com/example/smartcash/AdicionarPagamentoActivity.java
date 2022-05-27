@@ -1,9 +1,11 @@
 package com.example.smartcash;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -115,6 +117,7 @@ public class AdicionarPagamentoActivity extends AppCompatActivity {
                 runOnUiThread(() -> {
                     adapterContas = new ArrayAdapter<String>(AdicionarPagamentoActivity.this, android.R.layout.simple_spinner_item, contaNomes);
                     adapterContas.setDropDownViewResource(android.R.layout.simple_spinner_item);
+                    adapterContas.notifyDataSetChanged();
                     spinnerContaPagamento.setAdapter(adapterContas);
                     for (Conta conta : contas) {
                         if (conta.getNome().equals(spinnerContaPagamento.getSelectedItem().toString())) {
@@ -198,5 +201,23 @@ public class AdicionarPagamentoActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getCarteira();
+    }
+
+    public void btnAbrirContaClick(View view){
+        Intent intent = new Intent(this, ModalContaActivity.class);
+        intent.putExtra("tipoCarteira", tipoCarteira);
+        startActivity(intent);
+    }
+
+    public void btnAbrirTagClick(View view){
+        Intent intent = new Intent(this, ModalTagActivity.class);
+        intent.putExtra("tipoCarteira", tipoCarteira);
+        startActivity(intent);
     }
 }

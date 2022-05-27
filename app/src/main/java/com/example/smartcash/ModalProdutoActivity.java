@@ -90,12 +90,12 @@ public class ModalProdutoActivity extends AppCompatActivity {
 
         client.newCall(request).enqueue(new Callback() {
             @Override
-            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+            public void onFailure(Call call, IOException e) {
 
             }
 
             @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+            public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
                     ModalProdutoActivity.this.runOnUiThread(() -> Toast.makeText(ModalProdutoActivity.this,
                             "Produto enviada com Sucesso!", Toast.LENGTH_LONG).show());

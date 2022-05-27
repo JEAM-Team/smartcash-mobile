@@ -1,9 +1,11 @@
 package com.example.smartcash;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -40,7 +42,7 @@ public class AdicionarSaldoActivity extends AppCompatActivity {
     TextView editTxtTitulo, editTxtValor, editTxtData, editTxtVezes;
     Switch editTxtRepeticao;
     Spinner spinnerContaSaldo, spinnerTagSaldo;
-    Button buttonPostSaldo;
+    Button buttonPostSaldo, btnAbrirModalContaSaldo, btnAbrirModalTagSaldo;
 
     SharedPreferences prefs;
 
@@ -71,6 +73,8 @@ public class AdicionarSaldoActivity extends AppCompatActivity {
         spinnerContaSaldo = findViewById(R.id.spinnerContaSaldo);
         spinnerTagSaldo = findViewById(R.id.spinnerTagSaldo);
         buttonPostSaldo = findViewById(R.id.btnAdicionarSaldo);
+        btnAbrirModalContaSaldo = findViewById(R.id.btnAbrirModalContaSaldo);
+        btnAbrirModalTagSaldo = findViewById(R.id.btnAdicionarSaldo);
 
         getCarteira();
         buttonPostSaldo.setOnClickListener(view -> postSaldo());
@@ -113,6 +117,7 @@ public class AdicionarSaldoActivity extends AppCompatActivity {
                 runOnUiThread(() -> {
                     adapterContas = new ArrayAdapter<String>(AdicionarSaldoActivity.this, android.R.layout.simple_spinner_item, contaNomes);
                     adapterContas.setDropDownViewResource(android.R.layout.simple_spinner_item);
+                    adapterContas.notifyDataSetChanged();
                     spinnerContaSaldo.setAdapter(adapterContas);
                     for (Conta conta : contas) {
                         if (conta.getNome().equals(spinnerContaSaldo.getSelectedItem().toString())) {
@@ -190,4 +195,21 @@ public class AdicionarSaldoActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getCarteira();
+    }
+
+    public void btnAbrirContaClick(View view){
+        Intent intent = new Intent(this, ModalContaActivity.class);
+        intent.putExtra("tipoCarteira", tipoCarteira);
+        startActivity(intent);
+    }
+
+    public void btnAbrirTagClick(View view) {
+        Intent intent = new Intent(this, ModalTagActivity.class);
+        intent.putExtra("tipoCarteira", tipoCarteira);
+        startActivity(intent);
+    }
 }
