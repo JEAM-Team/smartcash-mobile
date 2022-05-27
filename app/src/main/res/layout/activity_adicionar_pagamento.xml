@@ -83,7 +83,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerContaPagamento" />
 
-    <EditText
+    <com.santalu.maskara.widget.MaskEditText
         android:id="@+id/txtDataVencimentoPagamento"
         android:layout_width="163dp"
         android:layout_height="48dp"
@@ -92,8 +92,11 @@
         android:ems="10"
         android:hint="  /  /   "
         android:inputType="date"
+        app:mask="##/##/####"
+        app:maskCharacter="#"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switchRepetir" />
+        app:layout_constraintTop_toBottomOf="@+id/switchRepetir"
+        app:maskStyle="normal" />
 
     <TextView
         android:id="@+id/textView7"
