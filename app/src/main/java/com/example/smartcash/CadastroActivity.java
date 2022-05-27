@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.santalu.maskara.widget.MaskEditText;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,7 +32,8 @@ public class CadastroActivity extends AppCompatActivity {
     private final OkHttpClient client = new OkHttpClient();
     private final Gson gson = new Gson();
     private final MediaType mediaType = MediaType.parse("application/json");
-    TextView editTxtName, editTxtLastName, editTxtCPF, editTxtEmail, editTxtPassword, editTxtConfirm_Password;
+    TextView editTxtName, editTxtLastName, editTxtEmail, editTxtPassword, editTxtConfirm_Password;
+    MaskEditText editTxtCPF;
     Button bntCadastro;
 
     @Override
@@ -55,7 +57,7 @@ public class CadastroActivity extends AppCompatActivity {
     public void cadastrarUsuario() {
         String name = editTxtName.getText().toString();
         String lastName = editTxtLastName.getText().toString();
-        String cpf = editTxtCPF.getText().toString();
+        String cpf = editTxtCPF.getUnMasked();
         String email = editTxtEmail.getText().toString();
         String senha = editTxtPassword.getText().toString();
         String confirmarSenha = editTxtConfirm_Password.getText().toString();
