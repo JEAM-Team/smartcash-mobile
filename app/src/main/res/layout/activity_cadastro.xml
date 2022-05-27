@@ -28,7 +28,7 @@
             android:layout_width="120dp"
             android:layout_height="50dp"
             android:backgroundTint="#F8F8F8"
-            android:onClick="btnVoltarClick"
+            android:onClick="SairCadastro"
             android:text="Voltar"
             android:textColor="?android:textColorPrimary"
             app:icon="?attr/actionModeCloseDrawable"
@@ -175,7 +175,7 @@
             <Button
                 android:id="@+id/bntCadastro"
                 android:layout_width="0dp"
-                android:layout_height="45dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="60dp"
                 android:layout_marginTop="110dp"
                 android:layout_marginEnd="60dp"

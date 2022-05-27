@@ -126,4 +126,8 @@ public class CadastroActivity extends AppCompatActivity {
     }
 
     public void Sair(){ finish();}
+
+    public void SairCadastro(View view){
+        finish();
+    }
 }
