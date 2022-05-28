@@ -194,4 +194,28 @@
         app:layout_constraintEnd_toStartOf="@+id/btnCarteiraProf"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="14dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="22dp"
+        android:text="-"
+        android:textAlignment="center"
+        android:textColor="#FF4646"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toStartOf="@+id/txtPagamentoCarteiraPessoal"
+        app:layout_constraintTop_toTopOf="@+id/boxPessoal" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="20dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="28dp"
+        android:text="+"
+        android:textAlignment="center"
+        android:textColor="#8BC34A"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/txtSaldoCarteiraPessoal"
+        app:layout_constraintTop_toTopOf="@+id/boxPessoal" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
