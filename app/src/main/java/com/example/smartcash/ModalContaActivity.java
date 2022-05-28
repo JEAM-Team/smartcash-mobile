@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.smartcash.models.domain.Carteira;
+import com.example.smartcash.models.enums.TipoCarteira;
 import com.example.smartcash.models.enums.TipoConta;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -36,12 +37,20 @@ public class ModalContaActivity extends AppCompatActivity {
     Button btnAdionarConta, btnCancelar;
     Spinner dropTipoConta;
 
+    TipoCarteira tipoCarteira;
+
     SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modal_conta);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            tipoCarteira = (TipoCarteira) extras.get("tipoCarteira");
+        }
+
         btnAdionarConta = findViewById(R.id.btnAdicionarConta3);
         btnCancelar = findViewById(R.id.btnCancelar3);
         txtNome4 = findViewById(R.id.txtNome3);
@@ -67,7 +76,7 @@ public class ModalContaActivity extends AppCompatActivity {
         String email = prefs.getString("email", "");
 
         Request requestById = new Request.Builder()
-                .url("https://smartcash-engine.herokuapp.com/engine/v1/carteira/busca?tipo=PESSOAL")
+                .url("https://smartcash-engine.herokuapp.com/engine/v1/carteira/busca?tipo=" + tipoCarteira.name())
                 .get()
                 .addHeader("Content-Type", "application/json")
                 .addHeader("email", email)
