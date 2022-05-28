@@ -5,7 +5,7 @@ import android.content.res.Resources;
 public enum TipoConta {
 
 	CC("Conta Corrente"),
-	CS("Conta salário"),
+	CS("Conta Salário"),
 	CP("Conta Poupança"),
 	DN("Dinheiro");
 

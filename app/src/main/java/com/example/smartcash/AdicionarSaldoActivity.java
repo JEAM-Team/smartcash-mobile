@@ -126,6 +126,7 @@ public class AdicionarSaldoActivity extends AppCompatActivity {
                     }
 
                     adapterTags = new ArrayAdapter<String>(AdicionarSaldoActivity.this, android.R.layout.simple_spinner_item, tagsNomes);
+                    adapterTags.insert("", 0);
                     adapterTags.setDropDownViewResource(android.R.layout.simple_spinner_item);
                     spinnerTagSaldo.setAdapter(adapterTags);
                     for (Tag tag : tags) {
