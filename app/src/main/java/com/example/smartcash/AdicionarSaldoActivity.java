@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartcash.models.domain.Carteira;
 import com.example.smartcash.models.domain.Conta;
+import com.example.smartcash.models.domain.Produto;
 import com.example.smartcash.models.domain.Tag;
 import com.example.smartcash.models.enums.AppConstants;
 import com.example.smartcash.models.enums.TipoCarteira;
@@ -27,6 +28,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,19 +41,22 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class AdicionarSaldoActivity extends AppCompatActivity {
-    TextView editTxtTitulo, editTxtValor, editTxtData, editTxtVezes;
+    TextView editTxtTitulo, editTxtValor, editTxtData, editTxtVezes, editTxtQuantidade, textViewProd;
     Switch editTxtRepeticao;
-    Spinner spinnerContaSaldo, spinnerTagSaldo;
+    Spinner spinnerContaSaldo, spinnerTagSaldo, spinnerProdutos;
     Button buttonPostSaldo, btnAbrirModalContaSaldo, btnAbrirModalTagSaldo;
 
     SharedPreferences prefs;
 
     ArrayAdapter<String> adapterContas;
     ArrayAdapter<String> adapterTags;
+    ArrayAdapter<String> adapterProdutos;
+    Produto produto;
 
     Long contaId;
     Long tagId;
     Long carteiraId;
+    Long produtoId = 0L;
 
     TipoCarteira tipoCarteira;
 
@@ -59,6 +64,8 @@ public class AdicionarSaldoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adicionar_saldo);
+
+        prefs = AdicionarSaldoActivity.this.getSharedPreferences("sm-pref", Context.MODE_PRIVATE);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -75,17 +82,29 @@ public class AdicionarSaldoActivity extends AppCompatActivity {
         buttonPostSaldo = findViewById(R.id.btnAdicionarSaldo);
         btnAbrirModalContaSaldo = findViewById(R.id.btnAbrirModalContaSaldo);
         btnAbrirModalTagSaldo = findViewById(R.id.btnAdicionarSaldo);
+        spinnerProdutos = findViewById(R.id.spinnerProdutos);
+        editTxtQuantidade = findViewById(R.id.editTxtQuantidade);
+        textViewProd = findViewById(R.id.textViewProd);
+
+        switch (tipoCarteira) {
+            case COMERCIAL:
+                editTxtValor.setEnabled(false);
+                carteiraId =  prefs.getLong("idCarteiraProfissional", 0L);
+                getProdutos();
+                break;
+            case PESSOAL:
+                carteiraId =  prefs.getLong("idCarteiraPessoal", 0L);
+                spinnerProdutos.setVisibility(View.INVISIBLE);
+                editTxtQuantidade.setVisibility(View.INVISIBLE);
+                textViewProd.setVisibility(View.INVISIBLE);
+        }
 
         getCarteira();
         buttonPostSaldo.setOnClickListener(view -> postSaldo());
-
-
     }
 
     private void getCarteira() {
         OkHttpClient client = new OkHttpClient();
-
-        prefs = AdicionarSaldoActivity.this.getSharedPreferences("sm-pref", Context.MODE_PRIVATE);
 
         Request request = new Request.Builder()
                 .url(AppConstants.BASE_URL.getName().concat("/carteira/busca?tipo=" + tipoCarteira.name()))
@@ -139,11 +158,52 @@ public class AdicionarSaldoActivity extends AppCompatActivity {
         });
     }
 
-    private void postSaldo() {
-        prefs = AdicionarSaldoActivity.this.getSharedPreferences("sm-pref", Context.MODE_PRIVATE);
+    private void getProdutos() {
+        OkHttpClient client = new OkHttpClient();
 
+        Request request = new Request.Builder()
+                .url("https://smartcash-engine.herokuapp.com/engine/v1/produto/carteira/" + carteiraId)
+                .get()
+                .addHeader("Authorization", "Bearer " + prefs.getString("token", ""))
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                AdicionarSaldoActivity.this.runOnUiThread(() -> Toast.makeText(AdicionarSaldoActivity.this,
+                        "Tente Novamente. Servidor fora do ar.", Toast.LENGTH_LONG).show());
+            }
+
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Produto[] produtos = new ObjectMapper().readValue(response.body().string(), Produto[].class);
+
+                List<String> produtosNomes = new ArrayList<>();
+                for (Produto prod:produtos) {
+                    produtosNomes.add(prod.getNome());
+                }
+
+                runOnUiThread(() -> {
+                    adapterProdutos = new ArrayAdapter<String>(AdicionarSaldoActivity.this, android.R.layout.simple_spinner_item, produtosNomes);
+                    adapterTags.insert("", 0);
+                    adapterProdutos.setDropDownViewResource(android.R.layout.simple_spinner_item);
+                    adapterProdutos.notifyDataSetChanged();
+                    spinnerProdutos.setAdapter(adapterProdutos);
+                    for (Produto prod:produtos) {
+                        if (prod.getNome().equals(spinnerProdutos.getSelectedItem().toString())) {
+                            produtoId = prod.getId();
+                            produto = prod;
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    private void postSaldo() {
         String titulo = editTxtTitulo.getText().toString();
-        Double valor = Double.parseDouble(editTxtValor.getText().toString().replace(",", "."));
+        Double valor;
         Boolean repeticao = Boolean.parseBoolean(editTxtRepeticao.getText().toString());
         String data = editTxtData.getText().toString();
         Integer qtd_vezes = !repeticao || editTxtVezes.getText().toString().isEmpty() ? 0 : Integer.parseInt(editTxtVezes.getText().toString());
@@ -151,6 +211,13 @@ public class AdicionarSaldoActivity extends AppCompatActivity {
         Long conta = contaId;
         Long tag = tagId;
         Long carteira = carteiraId;
+        Integer quantidade = Integer.parseInt(editTxtQuantidade.getText().toString());
+
+        if (tipoCarteira.equals(TipoCarteira.COMERCIAL)) {
+            valor = produto.getValor() * quantidade;
+        } else {
+            valor = Double.parseDouble(editTxtValor.getText().toString().replace(",", "."));
+        }
 
         OkHttpClient client = new OkHttpClient();
 
@@ -168,6 +235,7 @@ public class AdicionarSaldoActivity extends AppCompatActivity {
             jsonObject.put("conta_id", conta);
             jsonObject.put("tag_id", tag);
             jsonObject.put("carteira_id", carteira);
+            jsonObject.put("produto_id", produtoId);
         } catch (JSONException e) {
             e.printStackTrace();
         }

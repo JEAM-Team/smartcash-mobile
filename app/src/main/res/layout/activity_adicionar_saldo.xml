@@ -185,22 +185,32 @@
 
     <Spinner
         android:id="@+id/spinnerProdutos"
-        android:layout_width="334dp"
+        android:layout_width="200dp"
         android:layout_height="48dp"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="30dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="25dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerTagSaldo" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/textViewProd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
+        android:layout_marginEnd="150dp"
         android:text="Produto"
         app:layout_constraintBottom_toTopOf="@+id/spinnerProdutos"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/editTxtQuantidade"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="Quantidade"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerTagSaldo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
