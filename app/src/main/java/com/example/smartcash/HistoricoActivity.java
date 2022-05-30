@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.smartcash.dataset.HistoricoComercialDataset;
 import com.example.smartcash.dataset.HistoricoDataset;
 import com.example.smartcash.models.adapters.HistoricoAdapter;
 import com.example.smartcash.models.domain.Atividade;
@@ -71,8 +72,14 @@ public class HistoricoActivity extends AppCompatActivity {
     public void setRecycler() throws JsonProcessingException {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         buscarHistorico();
-
-        historicoAdapter = new HistoricoAdapter(HistoricoDataset.getAtividades());
+        switch (tipoCarteira) {
+            case PESSOAL:
+                historicoAdapter = new HistoricoAdapter(HistoricoDataset.getAtividades());
+                break;
+            case COMERCIAL:
+                historicoAdapter = new HistoricoAdapter(HistoricoComercialDataset.getAtividades());
+                break;
+        }
         listaHistorico.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         listaHistorico.setLayoutManager(layoutManager);
         listaHistorico.setAdapter(historicoAdapter);
@@ -124,6 +131,7 @@ public class HistoricoActivity extends AppCompatActivity {
             notaDto.setTitulo(atividade.getNota().getTitulo());
             notaDto.setValor(atividade.getNota().getValor());
             notaDto.setData(atividade.getNota().getData());
+            notaDto.setTipo(atividade.getNota().getTipo());
 
             historicoDto.add(notaDto);
         }

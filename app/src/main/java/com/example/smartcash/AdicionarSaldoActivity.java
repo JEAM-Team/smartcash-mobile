@@ -81,7 +81,7 @@ public class AdicionarSaldoActivity extends AppCompatActivity {
         spinnerTagSaldo = findViewById(R.id.spinnerTagSaldo);
         buttonPostSaldo = findViewById(R.id.btnAdicionarSaldo);
         btnAbrirModalContaSaldo = findViewById(R.id.btnAbrirModalContaSaldo);
-        btnAbrirModalTagSaldo = findViewById(R.id.btnAdicionarSaldo);
+        btnAbrirModalTagSaldo = findViewById(R.id.btnAbrirModalTagSaldo);
         spinnerProdutos = findViewById(R.id.spinnerProdutos);
         editTxtQuantidade = findViewById(R.id.editTxtQuantidade);
         textViewProd = findViewById(R.id.textViewProd);
@@ -186,7 +186,6 @@ public class AdicionarSaldoActivity extends AppCompatActivity {
 
                 runOnUiThread(() -> {
                     adapterProdutos = new ArrayAdapter<String>(AdicionarSaldoActivity.this, android.R.layout.simple_spinner_item, produtosNomes);
-                    adapterTags.insert("", 0);
                     adapterProdutos.setDropDownViewResource(android.R.layout.simple_spinner_item);
                     adapterProdutos.notifyDataSetChanged();
                     spinnerProdutos.setAdapter(adapterProdutos);
@@ -211,9 +210,9 @@ public class AdicionarSaldoActivity extends AppCompatActivity {
         Long conta = contaId;
         Long tag = tagId;
         Long carteira = carteiraId;
-        Integer quantidade = Integer.parseInt(editTxtQuantidade.getText().toString());
 
         if (tipoCarteira.equals(TipoCarteira.COMERCIAL)) {
+            Integer quantidade = Integer.parseInt(editTxtQuantidade.getText().toString());
             valor = produto.getValor() * quantidade;
         } else {
             valor = Double.parseDouble(editTxtValor.getText().toString().replace(",", "."));

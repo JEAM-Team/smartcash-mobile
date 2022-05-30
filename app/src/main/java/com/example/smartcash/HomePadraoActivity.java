@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import android.view.View;
@@ -77,10 +78,15 @@ public class HomePadraoActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) {
                 try {
                     CalculaResultadoDto total = new Gson().fromJson(response.body().string(), CalculaResultadoDto.class);
-                    txtSaldoPessoal.setText("R$" + total.getTotalPessoal().getTotalSaldo().toString());
-                    txtPagamentoPessoal.setText("R$"+total.getTotalPessoal().getTotalPagamento().toString());
-                    txtSaldoProfissional.setText("R$"+total.getTotalComercial().getTotalSaldo().toString());
-                    txtPagamentoProfissional.setText("R$"+total.getTotalComercial().getTotalPagamento().toString());
+                    txtSaldoPessoal.setText(String.format("+ R$ %s",total.getTotalPessoal().getTotalSaldo()));
+                    txtSaldoPessoal.setTextColor(Color.parseColor("#8BC34A"));
+                    txtPagamentoPessoal.setText(String.format("- R$ %s",total.getTotalPessoal().getTotalPagamento()));
+                    txtPagamentoPessoal.setTextColor(Color.parseColor("#FF4646"));
+
+                    txtSaldoProfissional.setText(String.format("+ R$ %s",total.getTotalPessoal().getTotalSaldo()));
+                    txtSaldoProfissional.setTextColor(Color.parseColor("#8BC34A"));
+                    txtPagamentoProfissional.setText(String.format("- R$ %s",total.getTotalPessoal().getTotalPagamento()));
+                    txtPagamentoProfissional.setTextColor(Color.parseColor("#FF4646"));
                     txtUsuario.setText(email);
                 }catch (RuntimeException | IOException e){
                     e.printStackTrace();

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import com.example.smartcash.models.dtos.CalculaResultadoDto;
 
 import com.example.smartcash.models.enums.TipoCarteira;
+import com.example.smartcash.models.enums.TipoNota;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -84,8 +86,10 @@ public class HomeSecundariaActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) {
                 try {
                     CalculaResultadoDto total = new Gson().fromJson(response.body().string(), CalculaResultadoDto.class);
-                    txtSaldoCarteiraPessoal.setText("R$"+total.getTotalPessoal().getTotalSaldo());
-                    txtPagamentoCarteiraPessoal.setText("R$"+total.getTotalPessoal().getTotalPagamento());
+                    txtSaldoCarteiraPessoal.setText(String.format("+ R$ %s",total.getTotalPessoal().getTotalSaldo()));
+                    txtSaldoCarteiraPessoal.setTextColor(Color.parseColor("#8BC34A"));
+                    txtPagamentoCarteiraPessoal.setText(String.format("- R$ %s",total.getTotalPessoal().getTotalPagamento()));
+                    txtPagamentoCarteiraPessoal.setTextColor(Color.parseColor("#FF4646"));
                     txtUsuario.setText(email);
                 }catch (RuntimeException | IOException e){
                     e.printStackTrace();

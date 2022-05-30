@@ -1,9 +1,11 @@
 package com.example.smartcash.models.adapters;
 
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartcash.R;
@@ -11,9 +13,11 @@ import com.example.smartcash.dataset.PagamentoComercialDataset;
 import com.example.smartcash.dataset.PagamentoPessoalDataset;
 import com.example.smartcash.dataset.SaldoComercialDataset;
 import com.example.smartcash.dataset.SaldoPessoalDataset;
+import com.example.smartcash.helpers.DateTimeHelper;
 import com.example.smartcash.models.domain.Nota;
 import com.example.smartcash.models.dtos.NotaDto;
 import com.example.smartcash.models.enums.TipoCarteira;
+import com.example.smartcash.models.enums.TipoNota;
 import com.example.smartcash.models.holders.CardPagamentoHolder;
 
 import java.util.ArrayList;
@@ -31,11 +35,13 @@ public class PagamentoAdapter extends RecyclerView.Adapter<CardPagamentoHolder> 
                 from(parent.getContext()).inflate(R.layout.card_pagamento,parent,false));
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull CardPagamentoHolder holder, int position) {
-        holder.txtDadoPagamento.setText(notas.get(position).getTitulo());
-        holder.txtValorPagamento.setText(notas.get(position).getValor().toString());
-        holder.txtDataPagamento.setText(notas.get(position).getData().toString());
+        NotaDto nota = notas.get(position);
+        holder.txtDadoPagamento.setText(nota.getTitulo());
+        holder.txtValorPagamento.setText(String.format("R$ %s", nota.getValor().toString()));
+        holder.txtDataPagamento.setText(DateTimeHelper.toBrazilianFormat(nota.getData()));
     }
 
     public void updated(TipoCarteira tipo, List<NotaDto> n) {

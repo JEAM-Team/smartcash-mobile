@@ -46,6 +46,13 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences.Editor edit;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        editTxtLogin.setText("");
+        editTxtPassword.setText("");
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
