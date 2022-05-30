@@ -67,7 +67,7 @@
                     android:layout_marginTop="395dp"
                     android:layout_marginEnd="5dp"
                     android:onClick="btnEnviarTag"
-                    android:text="Adiciona conta"
+                    android:text="Adiciona tag"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/editTxtName3" />

@@ -1,6 +1,8 @@
 package com.example.smartcash.models.dtos;
 
+import com.example.smartcash.models.enums.TipoNota;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
@@ -10,16 +12,21 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class NotaDto implements Serializable {
 
     private String titulo;
 
     private Double valor;
 
+    private TipoNota tipo;
+
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate data;
+
+
 
     public String getTitulo() {
         return titulo;
@@ -48,9 +55,18 @@ public class NotaDto implements Serializable {
     public NotaDto() {
     }
 
-    public NotaDto(String titulo, Double valor, LocalDate data) {
+    public TipoNota getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoNota tipo) {
+        this.tipo = tipo;
+    }
+
+    public NotaDto(String titulo, Double valor, TipoNota tipo, LocalDate data) {
         this.titulo = titulo;
         this.valor = valor;
+        this.tipo = tipo;
         this.data = data;
     }
 
@@ -59,6 +75,7 @@ public class NotaDto implements Serializable {
         return "NotaDto{" +
                 "titulo='" + titulo + '\'' +
                 ", valor=" + valor +
+                ", tipo=" + tipo +
                 ", data=" + data +
                 '}';
     }

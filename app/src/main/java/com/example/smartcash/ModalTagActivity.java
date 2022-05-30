@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.smartcash.models.domain.Carteira;
+import com.example.smartcash.models.enums.TipoCarteira;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.json.JSONException;
@@ -33,11 +34,19 @@ public class ModalTagActivity extends AppCompatActivity {
     TextView txtNome2;
     Button btnAdicionarConta2;
 
+    TipoCarteira tipoCarteira;
+
     SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            tipoCarteira = (TipoCarteira) extras.get("tipoCarteira");
+        }
+
         setContentView(R.layout.activity_modal_tag);
         txtNome2 = findViewById(R.id.editTxtName3);
         btnAdicionarConta2 = findViewById(R.id.btnAdicionarConta2);
@@ -57,7 +66,7 @@ public class ModalTagActivity extends AppCompatActivity {
         String email = prefs.getString("email","");
 
         Request requestById = new Request.Builder()
-                .url("https://smartcash-engine.herokuapp.com/engine/v1/carteira/busca?tipo=PESSOAL")
+                .url("https://smartcash-engine.herokuapp.com/engine/v1/carteira/busca?tipo="+ tipoCarteira.name())
                 .get()
                 .addHeader("Content-Type", "application/json")
                 .addHeader("email", email)
