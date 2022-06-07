@@ -83,9 +83,9 @@ public class HomePadraoActivity extends AppCompatActivity {
                     txtPagamentoPessoal.setText(String.format("- R$ %s",total.getTotalPessoal().getTotalPagamento()));
                     txtPagamentoPessoal.setTextColor(Color.parseColor("#FF4646"));
 
-                    txtSaldoProfissional.setText(String.format("+ R$ %s",total.getTotalPessoal().getTotalSaldo()));
+                    txtSaldoProfissional.setText(String.format("+ R$ %s",total.getTotalComercial().getTotalSaldo()));
                     txtSaldoProfissional.setTextColor(Color.parseColor("#8BC34A"));
-                    txtPagamentoProfissional.setText(String.format("- R$ %s",total.getTotalPessoal().getTotalPagamento()));
+                    txtPagamentoProfissional.setText(String.format("- R$ %s",total.getTotalComercial().getTotalPagamento()));
                     txtPagamentoProfissional.setTextColor(Color.parseColor("#FF4646"));
                     txtUsuario.setText(email);
                 }catch (RuntimeException | IOException e){
